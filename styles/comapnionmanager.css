@@ -1,0 +1,50 @@
+.actor-image{
+    width: 50px;
+    height: 50px;
+    border: none;
+}
+
+.companion-item{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid black;
+    padding: 8px;
+}
+
+.summon-btn{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.warpgate-btn{
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    width: 40px;
+    height: 40px;
+    margin-left: -45px;
+    border: none;
+}
+
+.warpgate-btn:hover{
+    opacity: 1;
+}
+
+.anim-dropdown{
+    min-width: 100px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+.companion-number{
+    width: 50px;
+    margin-left:auto;
+    margin-right: 10px;
+}
+
+.actor-name{
+    margin-left: 1em;
+    margin-right: 1em;
+}

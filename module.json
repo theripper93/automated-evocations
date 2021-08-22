@@ -27,7 +27,8 @@
       "./scripts/spellconfig.js"
   ],
   "styles": [
-      "./styles/module.css"
+      "./styles/comapnionmanager.css",
+      "./styles/spellconfig.css"
   ],
   "packs": [
   ],

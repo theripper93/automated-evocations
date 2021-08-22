@@ -1,3 +1,9 @@
 {
-    "MODULE.hello": "hello"
+    "AE": {
+        "dialogs": {
+            "companionManager":{
+                "title": "Companion Manager"
+            }
+        }
+    }
 }
