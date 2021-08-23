@@ -75,6 +75,7 @@ class CompanionManager extends FormApplication {
       "modules/automated-evocations/assets/black-hole-bolas.webp",
       ""
     );
+    if(posData.cancelled) return
     AECONSTS.animationFunctions[animation].fn(posData, tokenData);
     await this.wait(AECONSTS.animationFunctions[animation].time);
     warpgate.spawnAt(

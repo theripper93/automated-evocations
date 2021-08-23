@@ -40,7 +40,10 @@
   "socket":true,
   "dependencies": [
     {
-        "name": "lib-wrapper"
+        "name": "sequencer"
+    },
+    {
+        "name": "warpgate"
     }
   ]
 }

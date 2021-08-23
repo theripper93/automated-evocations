@@ -7,22 +7,12 @@ Hooks.once('init', async function() {
         type: Array,
         default: [],
       });
-
-
-      AECONSTS.animations = {
-          "fire": "Fire",
-          "air": "Air",
-          "lightning": "Lightning",
-          "water": "Water",
-          "energy1": "Energy 1",
-          "magic1": "Magic 1",
-          "heart": "Heart",
-          "music": "Music",
-          "fourelements": "Four Elements",
-      }
 });
 
 Hooks.once('ready', async function() {
+    for(let k of Object.keys(AECONSTS.animationFunctions)){
+      AECONSTS.animations[k] = game.i18n.localize(`AE.animations.${k}`)
+    }
 //new CompanionManager().render(true)
 });
 

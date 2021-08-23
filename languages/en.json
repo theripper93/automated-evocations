@@ -9,6 +9,17 @@
                 }
             }
         },
-        "actorSheetBtn": "Companions"
+        "actorSheetBtn": "Companions",
+        "animations": {
+            "fire": "Fire",
+            "air": "Air",
+            "lightning": "Lightning",
+            "water": "Water",
+            "energy1": "Energy 1",
+            "magic1": "Magic 1",
+            "heart": "Heart",
+            "music": "Music",
+            "fourelements": "Four Elements"
+        } 
     }
 }
