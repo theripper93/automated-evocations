@@ -75,7 +75,7 @@ class CompanionManager extends FormApplication {
       "modules/automated-evocations/assets/black-hole-bolas.webp",
       ""
     );
-    if(posData.cancelled) return
+    if (posData.cancelled) return;
     AECONSTS.animationFunctions[animation].fn(posData, tokenData);
     await this.wait(AECONSTS.animationFunctions[animation].time);
     warpgate.spawnAt(
@@ -167,11 +167,33 @@ class CompanionManager extends FormApplication {
       });
     }
     game.user.setFlag(AECONSTS.MN, "companions", data);
-    //game.settings.set(AECONSTS.MN, "companions", data);
   }
 
-  close() {
-    this.saveData();
+  close(noSave = false) {
+    if (!noSave) this.saveData();
     super.close();
+  }
+}
+
+class SimpleCompanionManager extends CompanionManager {
+  constructor(summonData) {
+    super();
+    this.summons = summonData;
+  }
+
+  async activateListeners(html) {
+    debugger
+    for (let summon of this.summons) {
+      this.element.find("#companion-list").append(this.generateLi(summon));
+    }
+
+    html.on("click", "#summon-companion", this._onSummonCompanion.bind(this));
+    html.on("click", ".actor-name", this._onOpenSheet.bind(this));
+  }
+
+  _onDrop(event) {}
+
+  close() {
+    super.close(true);
   }
 }

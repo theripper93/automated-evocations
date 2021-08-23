@@ -21,10 +21,9 @@
   "scripts": [
       "./scripts/main.js",
       "./scripts/config.js",
-      "./scripts/module.js",
       "./scripts/companionmanager.js",
-      "./scripts/summonanimations.js",
-      "./scripts/spellconfig.js"
+      "./scripts/autoevocations/dnd5e.js",
+      "./scripts/autoevocations/automatedevocations.js"
   ],
   "styles": [
       "./styles/comapnionmanager.css",
