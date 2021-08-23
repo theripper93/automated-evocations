@@ -10,7 +10,7 @@ class CompanionManager extends FormApplication {
       id: "companionManager",
       template: `modules/automated-evocations/templates/companionmanager.hbs`,
       resizable: true,
-      width: window.innerWidth > 400 ? 400 : window.innerWidth - 100,
+      width: 300,
       height: window.innerHeight > 400 ? 400 : window.innerHeight - 100,
       dragDrop: [{ dragSelector: null, dropSelector: null }],
     };
@@ -24,10 +24,35 @@ class CompanionManager extends FormApplication {
     this.loadCompanions();
     html.on("click", "#remove-companion", this._onRemoveCompanion.bind(this));
     html.on("click", "#summon-companion", this._onSummonCompanion.bind(this));
+    html.on("click", ".actor-name", this._onOpenSheet.bind(this));
+    html.on("dragstart", "#companion", async (event) => {
+      event.originalEvent.dataTransfer.setData(
+        "text/plain",
+        event.currentTarget.dataset.elid
+      );
+    });
+    html.on("dragend", "#companion", async (event) => {
+      event.originalEvent.dataTransfer.setData(
+        "text/plain",
+        event.currentTarget.dataset.elid
+      );
+    });
   }
 
   _onDrop(event) {
-    const data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    debugger
+    let data
+    try{
+      data = JSON.parse(event.dataTransfer.getData("text/plain")); 
+    } catch{
+      data = event.dataTransfer.getData("text/plain")
+    }
+    const li = this.element.find(`[data-elid="${data}"]`)
+    if(li.length && $(event.target).hasClass("companion-item")) {
+      debugger
+      $(li).remove()
+      $(event.target).closest("li").before($(li))
+    }
     if (!data.type === "Actor") return;
     this.element.find("#companion-list").append(this.generateLi({ id: data.id }));
     this.saveData();
@@ -38,7 +63,7 @@ class CompanionManager extends FormApplication {
     const aId = event.currentTarget.dataset.aid;
     const duplicates = $(event.currentTarget.parentElement.parentElement).find("#companion-number-val").val();
     const tokenData = await game.actors.get(aId).getTokenData();
-    const posData = await warpgate.crosshairs.show(1, 'icons/svg/dice-target.svg', '')
+    const posData = await warpgate.crosshairs.show(1, 'modules/automated-evocations/assets/black-hole-bolas.webp', '')
     AECONSTS.animationFunctions[animation].fn(posData,tokenData);
     await this.wait(AECONSTS.animationFunctions[animation].time)
     warpgate.spawnAt({x: posData.x, y: posData.y}, tokenData, {}, {}, {duplicates})
@@ -57,6 +82,14 @@ class CompanionManager extends FormApplication {
     });
   }
 
+  async _onOpenSheet(event) {
+    const actorId = event.currentTarget.parentElement.dataset.aid;
+    const actor = game.actors.get(actorId);
+    if (actor) {
+      actor.sheet.render(true);
+    }
+  }
+
   async loadCompanions() {
     let data = game.settings.get(AECONSTS.MN, "companions");
     if (data) {
@@ -70,22 +103,22 @@ class CompanionManager extends FormApplication {
     const actor = game.actors.get(data.id)
     if(!actor) return ""
     let $li = $(`
-	<li id="companion" class="companion-item" data-aid="${actor.id}">
+	<li id="companion" class="companion-item" data-aid="${actor.id}" data-elid="${randomID()}" draggable="true">
 		<div class="summon-btn">
 			<img class="actor-image" src="${actor.data.img}" alt="">
 			<div class="warpgate-btn" id="summon-companion" data-aid="${actor.id}"></div>
 		</div>
     	<span class="actor-name">${actor.data.name}</span>
-		<div class="companion-number"><input type="number" step="1" id="companion-number-val" value="${
+		<div class="companion-number"><input type="number" class="fancy-input" step="1" id="companion-number-val" value="${
       data.number || 1
     }"></div>
     	<select class="anim-dropdown">
         	${this.getAnimations(data.animation)}
     	</select>
 		<i id="remove-companion" class="fas fa-trash"></i>
-    <i id="advanced-params" class="fas fa-edit"></i>
 	</li>
 	`);
+  //    <i id="advanced-params" class="fas fa-edit"></i>
     return $li;
   }
 

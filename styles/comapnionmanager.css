@@ -1,6 +1,9 @@
+#companionManager{
+    min-width: 300px;
+}
+
 #companionManager .window-content{
     padding: 0px;
-
 }
 
 #companion-list{
@@ -13,16 +16,28 @@
     width: 50px;
     height: 50px;
     border: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.actor-image:hover{
+    opacity: 0.3;
 }
 
 .companion-item{
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+    transition: background-color 0.2s ease-in-out;
     padding: 8px;
 }
 
+.companion-item:hover{
+    background: rgba(0, 0, 0, 0.3);
+}
+
 .summon-btn{
+    min-width: 50px;
+    min-height: 50px;
     width: 50px;
     height: 50px;
     display: flex;
@@ -30,10 +45,12 @@
 }
 
 .warpgate-btn{
-    -moz-mask-image: url(../assets/boomerang-sun.svg);
-    -webkit-mask-image: url(../assets/boomerang-sun.svg);
-    mask-image: url(../assets/boomerang-sun.svg);
-    background: rgba(0, 0, 0, 0.75);
+    /*-moz-mask-image: url(../assets/black-hole-bolas.svg);
+    -webkit-mask-image: url(../assets/black-hole-bolas.svg);
+    mask-image: url(../assets/black-hole-bolas.svg);
+    background: rgba(105, 105, 105, 0.75);*/
+    background: url(../assets/black-hole-bolas.webp) center;
+    background-size: contain;
     z-index: 10;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
@@ -49,18 +66,38 @@
 }
 
 .anim-dropdown{
+    width: 100px;
     min-width: 100px;
     margin-left:10px;
     margin-right: 10px;
 }
 
 .companion-number{
-    width: 50px;
+    width: 25px;
+    min-width: 25px;
+    text-align: center;
     margin-left:auto;
-    margin-right: 10px;
+    margin-right: -13px;
+}
+
+#companionManager input{
+    border-right: 0;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height: 27px;
 }
 
 .actor-name{
     margin-left: 1em;
     margin-right: 1em;
+}
+
+.actor-name:hover{
+    cursor: pointer;
+    text-shadow: rgba(255, 0, 0, 0.75) 0 0 5px;
+}
+
+#remove-companion:hover{
+    cursor: pointer;
+    text-shadow: rgba(255, 0, 0, 0.75) 0 0 5px;
 }
