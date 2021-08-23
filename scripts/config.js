@@ -4,15 +4,16 @@ Hooks.once('init', async function() {
         hint: "",
         scope: "user",
         config: false,
-        type: Object,
-        default: {},
+        type: Array,
+        default: [],
       });
 
 
       AECONSTS.animations = {
-          "a": "a",
-          "b": "b",
-          "c": "c",
+          "fire": "Fire",
+          "air": "Air",
+          "lightning": "Lightning",
+          "water": "Water",
       }
 });
 
