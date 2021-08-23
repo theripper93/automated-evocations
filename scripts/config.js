@@ -2,7 +2,7 @@ Hooks.once('init', async function() {
     game.settings.register(AECONSTS.MN, "companions", {
         name: "",
         hint: "",
-        scope: "user",
+        scope: "client",
         config: false,
         type: Array,
         default: [],
@@ -14,11 +14,16 @@ Hooks.once('init', async function() {
           "air": "Air",
           "lightning": "Lightning",
           "water": "Water",
+          "energy1": "Energy 1",
+          "magic1": "Magic 1",
+          "heart": "Heart",
+          "music": "Music",
+          "fourelements": "Four Elements",
       }
 });
 
 Hooks.once('ready', async function() {
-//new CompanionManager().render(true)
+new CompanionManager().render(true)
 });
 
 Hooks.on("rendersheet",(app,html)=>{

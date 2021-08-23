@@ -40,41 +40,60 @@ class CompanionManager extends FormApplication {
   }
 
   _onDrop(event) {
-    debugger
-    let data
-    try{
-      data = JSON.parse(event.dataTransfer.getData("text/plain")); 
-    } catch{
-      data = event.dataTransfer.getData("text/plain")
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
+    } catch {
+      data = event.dataTransfer.getData("text/plain");
     }
-    const li = this.element.find(`[data-elid="${data}"]`)
-    if(li.length && $(event.target).hasClass("companion-item")) {
-      debugger
-      $(li).remove()
-      $(event.target).closest("li").before($(li))
+    const li = this.element.find(`[data-elid="${data}"]`);
+    if (li.length && !$(event.target).hasClass("nodrop")) {
+      let target = $(event.target).closest("li");
+      if (target.length) {
+        $(li).remove();
+        target.before($(li));
+      }
     }
     if (!data.type === "Actor") return;
-    this.element.find("#companion-list").append(this.generateLi({ id: data.id }));
+    this.element
+      .find("#companion-list")
+      .append(this.generateLi({ id: data.id }));
     this.saveData();
   }
 
   async _onSummonCompanion(event) {
-    const animation = $(event.currentTarget.parentElement.parentElement).find(".anim-dropdown").val();
+    const animation = $(event.currentTarget.parentElement.parentElement)
+      .find(".anim-dropdown")
+      .val();
     const aId = event.currentTarget.dataset.aid;
-    const duplicates = $(event.currentTarget.parentElement.parentElement).find("#companion-number-val").val();
+    const duplicates = $(event.currentTarget.parentElement.parentElement)
+      .find("#companion-number-val")
+      .val();
     const tokenData = await game.actors.get(aId).getTokenData();
-    const posData = await warpgate.crosshairs.show(1, 'modules/automated-evocations/assets/black-hole-bolas.webp', '')
-    AECONSTS.animationFunctions[animation].fn(posData,tokenData);
-    await this.wait(AECONSTS.animationFunctions[animation].time)
-    warpgate.spawnAt({x: posData.x, y: posData.y}, tokenData, {}, {}, {duplicates})
+    const posData = await warpgate.crosshairs.show(
+      1,
+      "modules/automated-evocations/assets/black-hole-bolas.webp",
+      ""
+    );
+    AECONSTS.animationFunctions[animation].fn(posData, tokenData);
+    await this.wait(AECONSTS.animationFunctions[animation].time);
+    warpgate.spawnAt(
+      { x: posData.x, y: posData.y },
+      tokenData,
+      {},
+      {},
+      { duplicates }
+    );
   }
 
   async _onRemoveCompanion(event) {
     Dialog.confirm({
       title: game.i18n.localize("AE.dialogs.companionManager.confirm.title"),
-      content: game.i18n.localize("AE.dialogs.companionManager.confirm.content"),
+      content: game.i18n.localize(
+        "AE.dialogs.companionManager.confirm.content"
+      ),
       yes: () => {
-        event.currentTarget.parentElement.remove()
+        event.currentTarget.parentElement.remove();
         this.saveData();
       },
       no: () => {},
@@ -91,7 +110,7 @@ class CompanionManager extends FormApplication {
   }
 
   async loadCompanions() {
-    let data = game.settings.get(AECONSTS.MN, "companions");
+    let data = game.user.getFlag(AECONSTS.MN, "companions");
     if (data) {
       for (let companion of data) {
         this.element.find("#companion-list").append(this.generateLi(companion));
@@ -100,10 +119,12 @@ class CompanionManager extends FormApplication {
   }
 
   generateLi(data) {
-    const actor = game.actors.get(data.id)
-    if(!actor) return ""
+    const actor = game.actors.get(data.id);
+    if (!actor) return "";
     let $li = $(`
-	<li id="companion" class="companion-item" data-aid="${actor.id}" data-elid="${randomID()}" draggable="true">
+	<li id="companion" class="companion-item" data-aid="${
+    actor.id
+  }" data-elid="${randomID()}" draggable="true">
 		<div class="summon-btn">
 			<img class="actor-image" src="${actor.data.img}" alt="">
 			<div class="warpgate-btn" id="summon-companion" data-aid="${actor.id}"></div>
@@ -118,35 +139,38 @@ class CompanionManager extends FormApplication {
 		<i id="remove-companion" class="fas fa-trash"></i>
 	</li>
 	`);
-  //    <i id="advanced-params" class="fas fa-edit"></i>
+    //    <i id="advanced-params" class="fas fa-edit"></i>
     return $li;
   }
 
   getAnimations(anim) {
-      let animList = "";
-      for (let [k, v] of Object.entries(AECONSTS.animations)) {
-        animList += `<option value="${k}" ${k==anim ? "selected":""}>${v}</option>`;
-      }
-      return animList
+    let animList = "";
+    for (let [k, v] of Object.entries(AECONSTS.animations)) {
+      animList += `<option value="${k}" ${
+        k == anim ? "selected" : ""
+      }>${v}</option>`;
+    }
+    return animList;
   }
   async wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  async saveData(){
-    let data = []
-    for(let companion of this.element.find(".companion-item")){
+  async saveData() {
+    let data = [];
+    for (let companion of this.element.find(".companion-item")) {
       data.push({
         id: companion.dataset.aid,
         animation: $(companion).find(".anim-dropdown").val(),
-        number: $(companion).find("#companion-number-val").val()
-      })
+        number: $(companion).find("#companion-number-val").val(),
+      });
     }
-    game.settings.set(AECONSTS.MN, "companions", data);
+    game.user.setFlag(AECONSTS.MN, "companions", data);
+    //game.settings.set(AECONSTS.MN, "companions", data);
   }
 
-  close(){
+  close() {
     this.saveData();
-    super.close()
+    super.close();
   }
 }

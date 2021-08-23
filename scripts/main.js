@@ -88,6 +88,84 @@ const AECONSTS = {
                 .play()
             },
             time: 1000
-        }
+        },
+        "energy1": {
+            fn: async (template,tokenData) => {
+                await new Sequence()
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/energy_spark_CIRCLE_01.webm")
+                        .belowTokens()
+                        .randomRotation()
+                        .atLocation(template)
+                        .randomOffset()
+                        .repeats(6, 50, 25, 75, 60, 20)
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.15)
+                    .wait(500)
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/energy_pulse_yellow_CIRCLE.webm")
+                        .belowTokens()
+                        .atLocation(template)
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.35)
+                .play()
+            },
+            time: 650
+        },
+        "magic1": {
+            fn: async (template,tokenData) => {
+                await new Sequence()
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/magic_explosion_symbol_CIRCLE.webm")
+                        .belowTokens()
+                        .atLocation(template)
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.35)
+                .play()
+            },
+            time: 1150
+        },
+        "heart": {
+            fn: async (template,tokenData) => {
+                await new Sequence()
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/heart_red_SQUARE.webm")
+                        .atLocation(template)
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.35)
+                .play()
+            },
+            time: 400
+        },
+        "music": {
+            fn: async (template,tokenData) => {
+                await new Sequence()
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/music_RECTANGLE.webm")
+                        .belowTokens()
+                        .randomRotation()
+                        .atLocation(template)
+                        .randomOffset()
+                        .repeats(6, 150, 225, 375, 460, 520)
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.25)
+                    .wait(900)
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/magic_symbol_SQUARE_05.webm")
+                        .belowTokens()
+                        .atLocation(template)
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.35)
+                .play()
+            },
+            time: 1350
+        },
+        "fourelements": {
+            fn: async (template,tokenData) => {
+                await new Sequence()
+                    .effect()
+                        .file("modules/automated-evocations/assets/animations/four_element_strike_SQUARE_01.webm")
+                        .atLocation(template)
+                        .belowTokens()
+                        .scale(Math.max(tokenData.width,tokenData.height)*0.35)
+                .play()
+            },
+            time: 700
+        },
+
     }
 }
