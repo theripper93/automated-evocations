@@ -49,7 +49,7 @@ class CompanionManager extends FormApplication {
     const li = this.element.find(`[data-elid="${data}"]`);
     if (li.length && !$(event.target).hasClass("nodrop")) {
       let target = $(event.target).closest("li");
-      if (target.length) {
+      if (target.length && target[0].dataset.elid != data) {
         $(li).remove();
         target.before($(li));
       }
@@ -182,7 +182,6 @@ class SimpleCompanionManager extends CompanionManager {
   }
 
   async activateListeners(html) {
-    debugger
     for (let summon of this.summons) {
       this.element.find("#companion-list").append(this.generateLi(summon));
     }
