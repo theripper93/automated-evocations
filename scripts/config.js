@@ -23,7 +23,7 @@ Hooks.once('init', async function() {
 });
 
 Hooks.once('ready', async function() {
-new CompanionManager().render(true)
+//new CompanionManager().render(true)
 });
 
 Hooks.on("rendersheet",(app,html)=>{
