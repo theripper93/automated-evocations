@@ -1,7 +1,7 @@
 {
   "name": "automated-evocations",
   "title": "Automated Evocations - Companion Manager",
-  "description": "desc",
+  "description": "A user interface to manage companions with summoning animations and automated summoning for spells",
   "version": "0.1",
   "author": "theripper93",
   "authors": [
