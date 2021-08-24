@@ -57,8 +57,19 @@ return {
 
 Every time an actor named `Arcane Hand` is summoned, the custom data will be applied
 
+# Credits \ License
 
+## Jack Kerouac's
 
+The included assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module.
+
+## Sequencer
+
+This module is used to play the animations https://github.com/fantasycalendar/FoundryVTT-Sequencer
+
+## Warpgate
+
+This module is used for the spawning https://github.com/trioderegion/warpgate
 
 
 
