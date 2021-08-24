@@ -60,7 +60,75 @@ Every time an actor named `Arcane Hand` is summoned, the custom data will be app
 ## Supported spells (automated)
 
 The ever expanding list of spells currently includes:
-Find Familiar, Arcane Hand, Conjure Animals
+All the SRD spells for dnd5e, if something is missing let me know
+
+## Custom \ non-SRD spells(ADVANCED)
+
+To add your own settings, you can merge your own configs to the default one. For the data structure please check `game.automatedevocations.dnd5e` in the console (or equivalent for your system.
+
+Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.get(AECONSTS.MN, "customautospells", yourData)`
+
+Example:
+
+```js
+const data = {
+  "Giant Insect":[
+    {
+      creature: "Giant Centipede",
+      number: 10,
+    },
+    {
+      creature: "Giant Spider",
+      number: 3,
+    },
+    {
+      creature: "Giant Wasp",
+      number: 5,
+    },
+    {
+      creature: "Giant Scorpion",
+      number: 1,
+    },
+  ]
+}
+game.settings.get(AECONSTS.MN, "customautospells", data)
+```
+
+The custom creature can also be a function, Example:
+
+```js
+const data = {
+  "Conjure Animals": (data) => {
+    let multiplier = 1;
+    if (data.level >= 5) multiplier = 2;
+    if (data.level >= 7) multiplier = 3; 
+    let beasts = game.actors
+      .filter(
+        (a) =>
+          a.data.data.details.type?.value == "beast" &&
+          a.data.data.details.cr <= 2
+      )
+      .sort((a, b) => {
+        return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+      });
+    let creatures = [];
+    for (let beast of beasts) {
+      let number = 1;
+      const cr = beast.data.data.details.cr;
+      if(cr==2) number = 1;
+      else if(cr==1) number = 2;
+      else if(cr==0.5) number = 4;
+      else if(cr<=0.25) number = 8;
+      creatures.push({
+        creature: beast.name,
+        number: number*multiplier,
+      });
+    }
+    return creatures;
+  }
+}
+game.settings.get(AECONSTS.MN, "customautospells", data)
+```
 
 *contributions to this list are very welcome, contact me via discord or open a PR to add to the list*
 
