@@ -3,6 +3,12 @@ A user interface to manage companions with summoning animations and automated su
 
 ![Latest Release Download Count](https://img.shields.io/github/downloads/theripper93/automated-evocations/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fautomated-evocations&colorB=03ff1c&style=for-the-badge)](https://forge-vtt.com/bazaar#package=automated-evocations) ![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Ftheripper93%2Fautomated-evocations%2Fmain%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge) [![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/theripper93) [![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/F53gBjR97G)
 
+# Attention:
+
+## For the summoning to work you need the actors imported in your world and your players need both permission on the actors and world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
+
+## While not a Dependency, Advanced Macros is required for the custom summons
+
 # How to use
 
 ## Companion Manager
@@ -66,7 +72,7 @@ All the SRD spells for dnd5e, if something is missing let me know
 
 To add your own settings, you can merge your own configs to the default one. For the data structure please check `game.automatedevocations.dnd5e` in the console (or equivalent for your system.
 
-Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.get(AECONSTS.MN, "customautospells", yourData)`
+Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.set(AECONSTS.MN, "customautospells", yourData)`
 
 Example:
 
@@ -91,7 +97,7 @@ const data = {
     },
   ]
 }
-game.settings.get(AECONSTS.MN, "customautospells", data)
+game.settings.set(AECONSTS.MN, "customautospells", data)
 ```
 
 The custom creature can also be a function, Example:
@@ -127,7 +133,7 @@ const data = {
     return creatures;
   }
 }
-game.settings.get(AECONSTS.MN, "customautospells", data)
+game.settings.set(AECONSTS.MN, "customautospells", data)
 ```
 
 *contributions to this list are very welcome, contact me via discord or open a PR to add to the list*
