@@ -26,6 +26,10 @@ After adding actor to the window you will have some options:
 
 ![image](https://user-images.githubusercontent.com/1346839/130645621-2da0dcd2-bd7f-4599-bfb7-712441734aef.png)
 
+## Store companions on actor
+
+By default companions are stored per user (so each actor will have the same summon list). If you want a particular actor to have it's own summon list you can use the included macro to switch the actor from global storage to local (on the actor). Simply place a linked actor on the scene, select it and run the macro. Using the other macro to switch it to global again will not wipe the saved companions so setting it to local at a later date will restore the previous list.
+
 ## Custom Macros (requires the Advanced Macro Module)
 
 You can assign cusom macros to specific actors
