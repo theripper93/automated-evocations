@@ -61,7 +61,7 @@ Every time an actor named `Arcane Hand` is summoned, the custom data will be app
 
 ## Jack Kerouac's
 
-The included assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module.
+The included assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module. (used with permission)
 
 ## Sequencer
 
