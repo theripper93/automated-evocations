@@ -36,8 +36,10 @@ Hooks.on("getActorSheetHeaderButtons",(app,buttons)=>{
         icon: "fas fa-users",
         class: "open-cm",
         label: game.i18n.localize("AE.actorSheetBtn"),
-        onclick: () => {
-            new CompanionManager().render(true)
+        onclick: function openCM(event){
+            const appId = event.currentTarget.offsetParent.dataset.appid
+            const actor = ui.windows[appId].object
+            new CompanionManager(actor).render(true)
         }
     })
 });

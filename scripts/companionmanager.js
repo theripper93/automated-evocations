@@ -1,6 +1,7 @@
 class CompanionManager extends FormApplication {
-  constructor() {
+  constructor(actor) {
     super();
+    this.actor = actor;
   }
 
   static get defaultOptions() {
@@ -21,6 +22,7 @@ class CompanionManager extends FormApplication {
   }
 
   async activateListeners(html) {
+    console.log(this.actor)
     html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="Drag and Drop an actor to add it to the list."></div>`)
     this.loadCompanions();
     html.on("input", ".searchinput", this._onSearch.bind(this));
@@ -127,7 +129,7 @@ class CompanionManager extends FormApplication {
   }
 
   async loadCompanions() {
-    let data = game.user.getFlag(AECONSTS.MN, "companions");
+    let data = this.actor.getFlag(AECONSTS.MN,"isLocal") ? this.actor.getFlag(AECONSTS.MN,"companions") || [] : game.user.getFlag(AECONSTS.MN, "companions");
     if (data) {
       for (let companion of data) {
         this.element.find("#companion-list").append(this.generateLi(companion));
@@ -137,7 +139,7 @@ class CompanionManager extends FormApplication {
 
   generateLi(data) {
     const actor = game.actors.get(data.id);
-    if (!actor || !actor.isOwner) return "";
+    if (!actor) return "";
     let $li = $(`
 	<li id="companion" class="companion-item" data-aid="${
     actor.id
@@ -182,7 +184,7 @@ class CompanionManager extends FormApplication {
         number: $(companion).find("#companion-number-val").val(),
       });
     }
-    game.user.setFlag(AECONSTS.MN, "companions", data);
+    this.actor.getFlag(AECONSTS.MN,"isLocal") ? this.actor.setFlag(AECONSTS.MN,"companions", data) : game.user.setFlag(AECONSTS.MN, "companions", data);
   }
 
   close(noSave = false) {
