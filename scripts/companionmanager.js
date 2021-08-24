@@ -21,7 +21,9 @@ class CompanionManager extends FormApplication {
   }
 
   async activateListeners(html) {
+    html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="Drag and Drop an actor to add it to the list."></div>`)
     this.loadCompanions();
+    html.on("input", ".searchinput", this._onSearch.bind(this));
     html.on("click", "#remove-companion", this._onRemoveCompanion.bind(this));
     html.on("click", "#summon-companion", this._onSummonCompanion.bind(this));
     html.on("click", ".actor-name", this._onOpenSheet.bind(this));
@@ -36,6 +38,17 @@ class CompanionManager extends FormApplication {
         "text/plain",
         event.currentTarget.dataset.elid
       );
+    });
+  }
+
+  _onSearch(event) {
+    const search = $(event.currentTarget).val();
+    this.element.find(".actor-name").each(function() {
+      if ($(this).text().toLowerCase().includes(search.toLowerCase())) {
+        $(this).parent().slideDown(200);
+      } else {
+        $(this).parent().slideUp(200);
+      }
     });
   }
 

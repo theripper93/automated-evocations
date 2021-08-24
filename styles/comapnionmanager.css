@@ -6,10 +6,17 @@
     padding: 0px;
 }
 
+#companionManager .form-group{
+    flex-direction: column;
+    padding: 0px;
+}
+
 #companion-list{
+    width: -webkit-fill-available;
     margin: 0;
     padding: 0;
     list-style: none;
+    z-index: 1;
 }
 
 .actor-image{
@@ -26,6 +33,7 @@
 .companion-item{
     display: flex;
     align-items: center;
+    width: -webkit-fill-available;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
     transition: background-color 0.2s ease-in-out;
     padding: 8px;
@@ -80,7 +88,7 @@
     margin-right: -13px;
 }
 
-#companionManager input{
+#companion-list input{
     border-right: 0;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -100,4 +108,10 @@
 #remove-companion:hover{
     cursor: pointer;
     text-shadow: rgba(255, 0, 0, 0.75) 0 0 5px;
+}
+
+.searchbox{
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
