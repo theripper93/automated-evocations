@@ -5,7 +5,7 @@ A user interface to manage companions with summoning animations and automated su
 
 # Attention:
 
-## For the summoning to work you need the actors imported in your world and your players need both permission on the actors and world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
+## For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
 
 ## While not a Dependency, Advanced Macros is required for the custom summons
 
