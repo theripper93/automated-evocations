@@ -7,6 +7,14 @@ Hooks.once('init', async function() {
         type: Array,
         default: [],
       });
+      game.settings.register(AECONSTS.MN, "customautospells", {
+        name: "",
+        hint: "",
+        scope: "world",
+        config: false,
+        type: Object,
+        default: {},
+      });
 });
 
 Hooks.once('ready', async function() {
@@ -14,6 +22,7 @@ Hooks.once('ready', async function() {
     for(let k of sortedAnims){
       AECONSTS.animations[k] = game.i18n.localize(`AE.animations.${k}`)
     }
+    mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
 //new CompanionManager().render(true)
 });
 
