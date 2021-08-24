@@ -337,5 +337,5 @@ Hooks.once("ready", async function () {
       },
     ],
   };
-  mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
+  game.automatedevocations[game.system.id] = mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
 });
