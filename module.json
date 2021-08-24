@@ -16,6 +16,11 @@
           "lang": "en",
           "name": "English",
           "path": "languages/en.json"
+      },
+      {
+          "lang": "fr",
+          "name": "Français (French)",
+          "path": "languages/fr.json"
       }
   ],
   "scripts": [

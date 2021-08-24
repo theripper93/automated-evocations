@@ -1,0 +1,25 @@
+{
+    "AE": {
+        "dialogs": {
+            "companionManager":{
+                "title": "Gestionnaire d'invocations",
+                "confirm": {
+                    "title": "Supprimer l'invocation",
+                    "content": "<p>Êtes-vous sûr de vouloir supprimer cette invocation ?</p>"
+                }
+            }
+        },
+        "actorSheetBtn": "Invocations",
+        "animations": {
+            "fire": "Feu",
+            "air": "Air",
+            "lightning": "Foudre",
+            "water": "Eau",
+            "energy1": "Énergie 1",
+            "magic1": "Magique 1",
+            "heart": "Cœur",
+            "music": "Musique",
+            "fourelements": "Quatre éléments"
+        } 
+    }
+}
