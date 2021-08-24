@@ -78,6 +78,10 @@ This module is used to play the animations https://github.com/fantasycalendar/Fo
 
 This module is used for the spawning https://github.com/trioderegion/warpgate
 
+## Game Icons
+
+Some images used are from https://game-icons.net/
+
 
 
 
