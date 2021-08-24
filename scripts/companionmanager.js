@@ -79,10 +79,11 @@ class CompanionManager extends FormApplication {
       .find(".anim-dropdown")
       .val();
     const aId = event.currentTarget.dataset.aid;
+    const actor = game.actors.get(aId);
     const duplicates = $(event.currentTarget.parentElement.parentElement)
       .find("#companion-number-val")
       .val();
-    const tokenData = await game.actors.get(aId).getTokenData();
+    const tokenData = await actor.getTokenData();
     const posData = await warpgate.crosshairs.show(
       1,
       "modules/automated-evocations/assets/black-hole-bolas.webp",
@@ -91,10 +92,12 @@ class CompanionManager extends FormApplication {
     if (posData.cancelled) return;
     AECONSTS.animationFunctions[animation].fn(posData, tokenData);
     await this.wait(AECONSTS.animationFunctions[animation].time);
+    //get custom data macro
+    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: game.user.character});
     warpgate.spawnAt(
       { x: posData.x, y: posData.y },
       tokenData,
-      {},
+      customTokenData || {},
       {},
       { duplicates }
     );
@@ -134,7 +137,7 @@ class CompanionManager extends FormApplication {
 
   generateLi(data) {
     const actor = game.actors.get(data.id);
-    if (!actor) return "";
+    if (!actor || !actor.isOwner) return "";
     let $li = $(`
 	<li id="companion" class="companion-item" data-aid="${
     actor.id
@@ -189,9 +192,10 @@ class CompanionManager extends FormApplication {
 }
 
 class SimpleCompanionManager extends CompanionManager {
-  constructor(summonData) {
+  constructor(summonData,spellLevel) {
     super();
     this.summons = summonData;
+    this.spellLevel = spellLevel
   }
 
   async activateListeners(html) {

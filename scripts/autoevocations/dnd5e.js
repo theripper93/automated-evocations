@@ -66,5 +66,33 @@ Hooks.once("ready", async function () {
         number: 1,
       },
     ],
+    "Conjure Animals": (data) => {
+      let multiplier = 1;
+      if (data.level >= 5) multiplier = 2;
+      if (data.level >= 7) multiplier = 3; 
+      let beasts = game.actors
+        .filter(
+          (a) =>
+            a.data.data.details.type?.value == "beast" &&
+            a.data.data.details.cr <= 2
+        )
+        .sort((a, b) => {
+          return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+        });
+      let creatures = [];
+      for (let beast of beasts) {
+        let number = 1;
+        const cr = beast.data.data.details.cr;
+        if(cr==2) number = 1;
+        else if(cr==1) number = 2;
+        else if(cr==0.5) number = 4;
+        else if(cr<=0.25) number = 8;
+        creatures.push({
+          creature: beast.name,
+          number: number*multiplier,
+        });
+      }
+      return creatures;
+    },
   };
 });
