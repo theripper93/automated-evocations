@@ -62,7 +62,7 @@ Every time an actor named `Arcane Hand` is summoned, the custom data will be app
 The ever expanding list of spells currently includes:
 Find Familiar, Arcane Hand, Conjure Animals
 
-*contributions to this list are very welcome, contact me via discord or open a PR to add to the list
+*contributions to this list are very welcome, contact me via discord or open a PR to add to the list*
 
 # Credits \ License
 
