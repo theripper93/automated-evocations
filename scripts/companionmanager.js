@@ -129,7 +129,7 @@ class CompanionManager extends FormApplication {
   }
 
   async loadCompanions() {
-    let data = this.actor.getFlag(AECONSTS.MN,"isLocal") ? this.actor.getFlag(AECONSTS.MN,"companions") || [] : game.user.getFlag(AECONSTS.MN, "companions");
+    let data = this.actor && this.actor.getFlag(AECONSTS.MN,"isLocal") ? this.actor.getFlag(AECONSTS.MN,"companions") || [] : game.user.getFlag(AECONSTS.MN, "companions");
     if (data) {
       for (let companion of data) {
         this.element.find("#companion-list").append(this.generateLi(companion));
@@ -184,7 +184,7 @@ class CompanionManager extends FormApplication {
         number: $(companion).find("#companion-number-val").val(),
       });
     }
-    this.actor.getFlag(AECONSTS.MN,"isLocal") ? this.actor.setFlag(AECONSTS.MN,"companions", data) : game.user.setFlag(AECONSTS.MN, "companions", data);
+    this.actor && this.actor.getFlag(AECONSTS.MN,"isLocal") ? this.actor.setFlag(AECONSTS.MN,"companions", data) : game.user.setFlag(AECONSTS.MN, "companions", data);
   }
 
   close(noSave = false) {
