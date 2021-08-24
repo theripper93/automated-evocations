@@ -72,7 +72,7 @@ All the SRD spells for dnd5e, if something is missing let me know
 
 To add your own settings, you can merge your own configs to the default one. For the data structure please check `game.automatedevocations.dnd5e` in the console (or equivalent for your system.
 
-Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.get(AECONSTS.MN, "customautospells", yourData)`
+Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.set(AECONSTS.MN, "customautospells", yourData)`
 
 Example:
 
@@ -97,7 +97,7 @@ const data = {
     },
   ]
 }
-game.settings.get(AECONSTS.MN, "customautospells", data)
+game.settings.set(AECONSTS.MN, "customautospells", data)
 ```
 
 The custom creature can also be a function, Example:
@@ -133,7 +133,7 @@ const data = {
     return creatures;
   }
 }
-game.settings.get(AECONSTS.MN, "customautospells", data)
+game.settings.set(AECONSTS.MN, "customautospells", data)
 ```
 
 *contributions to this list are very welcome, contact me via discord or open a PR to add to the list*
