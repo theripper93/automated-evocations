@@ -28,8 +28,11 @@ You can assign cusom macros to specific actors
 2. Add code for the custom data, in the context of the macro args[0] contains the following data: 
 
 `summon`: the actor that's getting summoned
+
 `spellLevel`: the level of the spell that triggered the summoning (requires midiqol)
+
 `duplicates`: how many creatures are getting summoned
+
 `assignedActor`: the actor assigned to the player doing the summoning (this will be the selected token actor if no assigned actor is found, this is always the case for GMs)
 
 The macro must return the custom data.
