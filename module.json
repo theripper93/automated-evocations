@@ -30,7 +30,21 @@
       "./styles/spellconfig.css"
   ],
   "packs": [
-  ],
+    {
+        "name": "aemacros",
+        "label": "Automated Evocations Macros",
+        "path": "packs/macros.db",
+        "entity": "Macro",
+        "module": "automated-evocations"
+    },
+    {
+        "name": "aeactors",
+        "label": "Automated Evocations Summons",
+        "path": "packs/actors.db",
+        "entity": "Actor",
+        "module": "automated-evocations"
+    }
+],
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "0.8.9",
   "url": "https://github.com/theripper93/automated-evocations",
