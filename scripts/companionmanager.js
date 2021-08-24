@@ -93,7 +93,7 @@ class CompanionManager extends FormApplication {
     AECONSTS.animationFunctions[animation].fn(posData, tokenData);
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
-    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: game.user.character});
+    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: game.user.character || _token.actor});
     warpgate.spawnAt(
       { x: posData.x, y: posData.y },
       tokenData,

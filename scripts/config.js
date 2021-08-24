@@ -10,7 +10,8 @@ Hooks.once('init', async function() {
 });
 
 Hooks.once('ready', async function() {
-    for(let k of Object.keys(AECONSTS.animationFunctions)){
+    let sortedAnims = Object.keys(AECONSTS.animationFunctions).sort();
+    for(let k of sortedAnims){
       AECONSTS.animations[k] = game.i18n.localize(`AE.animations.${k}`)
     }
 //new CompanionManager().render(true)
