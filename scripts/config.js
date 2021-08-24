@@ -22,7 +22,6 @@ Hooks.once('ready', async function() {
     for(let k of sortedAnims){
       AECONSTS.animations[k] = game.i18n.localize(`AE.animations.${k}`)
     }
-    mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
 //new CompanionManager().render(true)
 });
 
