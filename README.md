@@ -57,6 +57,11 @@ return {
 
 Every time an actor named `Arcane Hand` is summoned, the custom data will be applied
 
+## Supported spells (automated)
+
+The ever expanding list of spells currently includes:
+Find Familiar, Arcane Hand, Conjure Animals
+
 # Credits \ License
 
 ## Jack Kerouac's
