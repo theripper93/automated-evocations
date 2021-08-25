@@ -2,7 +2,7 @@ Hooks.once("ready", async function () {
   if (!game.automatedevocations) {
     game.automatedevocations = {};
   }
-
+ if(game.system.id != "dnd5e")return;
   game.automatedevocations.dnd5e = {
     "Arcane Hand":[
       {
