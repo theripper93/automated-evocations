@@ -15,12 +15,23 @@
             "air": "Air",
             "lightning": "Lightning",
             "water": "Water",
-            "energy1": "Energy 1",
-            "magic1": "Magic 1",
-            "heart": "Heart",
-            "music": "Music",
-            "fourelements": "Four Elements"
-        }, 
+            "energy1": "Energy",
+            "magic1": "Magic",
+            "heart": "Doki-Doki",
+            "music": "Crescendo",
+            "fourelements": "Four Elements",
+            "music2": "Chord",
+            "darkness": "Darkness",
+            "ice1": "Ice",
+            "magic2": "Conjuration",
+            "lightning2": "Storm"
+
+        },
+        "groups":{
+            "elemental": "Elemental",
+            "magical": "Magical",
+            "z-none": "Other"
+        },
         "settings":{
             "storeonactor":{
                 "title": "Store Companions on Actor",

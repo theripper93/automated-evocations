@@ -46,13 +46,25 @@ Hooks.once("ready", async function () {
     AECONSTS.animationFunctions,
     game.settings.get(AECONSTS.MN, "customanimations")
   );
-  console.log(AECONSTS.animationFunctions);
+  console.log("Automated Evocations: Animation Functions Loaded - ",AECONSTS.animationFunctions);
   let sortedAnims = Object.keys(AECONSTS.animationFunctions).sort();
   for (let k of sortedAnims) {
-    AECONSTS.animations[k] =
-      AECONSTS.animationFunctions[k]?.name ||
-      game.i18n.localize(`AE.animations.${k}`);
+    const group = AECONSTS.animationFunctions[k].group || "z-none";
+    AECONSTS.animations[group] = AECONSTS.animations[group] || [];
+    AECONSTS.animations[group].push({
+      name:
+        AECONSTS.animationFunctions[k]?.name ||
+        game.i18n.localize(`AE.animations.${k}`),
+      key: k,
+    });
   }
+  AECONSTS.animations = Object.keys(AECONSTS.animations).sort().reduce(
+    (obj, key) => { 
+      obj[key] = AECONSTS.animations[key]; 
+      return obj;
+    }, 
+    {}
+  );
   //new CompanionManager().render(true)
 });
 

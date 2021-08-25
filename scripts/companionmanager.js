@@ -22,7 +22,6 @@ class CompanionManager extends FormApplication {
   }
 
   async activateListeners(html) {
-    console.log(this.actor)
     html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="Drag and Drop an actor to add it to the list."></div>`)
     this.loadCompanions();
     html.on("input", ".searchinput", this._onSearch.bind(this));
@@ -173,11 +172,17 @@ class CompanionManager extends FormApplication {
   }
 
   getAnimations(anim) {
+
     let animList = "";
-    for (let [k, v] of Object.entries(AECONSTS.animations)) {
-      animList += `<option value="${k}" ${
-        k == anim ? "selected" : ""
-      }>${v}</option>`;
+    for (let [group, animations] of Object.entries(AECONSTS.animations)) {
+      const localGroup = game.i18n.localize(`AE.groups.${group}`)
+      animList+=`<optgroup label="${localGroup == `AE.groups.${group}` ? group : localGroup}">`;
+      for (let a of animations) {
+      animList += `<option value="${a.key}" ${
+        a.key == anim ? "selected" : ""
+      }>${a.name}</option>`;
+    }
+    animList += "</optgroup>";
     }
     return animList;
   }
