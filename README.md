@@ -146,6 +146,56 @@ game.settings.set(AECONSTS.MN, "customautospells", data)
 
 *contributions to this list are very welcome, contact me via discord or open a PR to add to the list*
 
+## Custom Animations(ADVANCED)
+
+To add your own animations, you can merge your own configs to the default one.
+Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.set(AECONSTS.MN, "customanimations", yourData)`
+
+WARNING: Setting this hidden setting will override any previous value, so you want to keep a file with all you custom setting and add to it every time you want to apply it!
+
+Example: 
+
+Adding your animation to the list:
+
+```js
+const customanims = {
+  energy2: {
+    fn: "light2",
+    time: 650,
+    name: "Energy 2",
+  },
+};
+
+game.settings.set(AECONSTS.MN, "customanimations", customanims);
+```
+
+`fn`: name of the macro to fire
+`time`: how long to wait from the animation start before spwaning the token
+`name`: the displayed name
+
+Example macro:
+
+```js
+const template = args[0]
+const tokenData = args[1]
+await new Sequence()
+.effect()
+    .file("modules/automated-evocations/assets/animations/energy_spark_CIRCLE_01.webm")
+    .belowTokens()
+    .randomRotation()
+    .atLocation(template)
+    .randomOffset()
+    .repeats(6, 50, 25, 75, 60, 20)
+    .scale(Math.max(tokenData.width,tokenData.height)*tokenData.scale*0.15)
+.wait(500)
+.effect()
+    .file("modules/automated-evocations/assets/animations/energy_pulse_yellow_CIRCLE.webm")
+    .belowTokens()
+    .atLocation(template)
+    .scale(Math.max(tokenData.width,tokenData.height)*tokenData.scale*0.35)
+.play()
+```
+
 # Credits \ License
 
 ## Jack Kerouac's
