@@ -77,6 +77,7 @@ class CompanionManager extends FormApplication {
   }
 
   async _onSummonCompanion(event) {
+    this.minimize();
     const animation = $(event.currentTarget.parentElement.parentElement)
       .find(".anim-dropdown")
       .val();
@@ -91,7 +92,10 @@ class CompanionManager extends FormApplication {
       "modules/automated-evocations/assets/black-hole-bolas.webp",
       ""
     );
-    if (posData.cancelled) return;
+    if (posData.cancelled) {
+      this.maximize();  
+      return;
+    }
     AECONSTS.animationFunctions[animation].fn(posData, tokenData);
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
@@ -103,6 +107,7 @@ class CompanionManager extends FormApplication {
       {},
       { duplicates }
     );
+    this.maximize();  
   }
 
   async _onRemoveCompanion(event) {
@@ -138,7 +143,7 @@ class CompanionManager extends FormApplication {
   }
 
   generateLi(data) {
-    const actor = game.actors.get(data.id);
+    const actor = game.actors.get(data.id) || game.actors.getName(data.id);
     if (!actor) return "";
     let $li = $(`
 	<li id="companion" class="companion-item" data-aid="${

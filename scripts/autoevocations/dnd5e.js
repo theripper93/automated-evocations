@@ -229,7 +229,7 @@ Hooks.once("ready", async function () {
         }
       ]
     },
-    "Animate Dead": (data) => {
+    "Create Undead": (data) => {
       let multiplier = data.level-3
       if(data.level == 8){
         return [
