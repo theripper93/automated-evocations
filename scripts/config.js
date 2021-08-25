@@ -15,6 +15,22 @@ Hooks.once('init', async function() {
         type: Object,
         default: {},
       });
+      game.settings.register(AECONSTS.MN, "enableautomations", {
+        name: game.i18n.localize(`AE.settings.enableautomations.title`),
+        hint: game.i18n.localize(`AE.settings.enableautomations.hint`),
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+      })
+      game.settings.register(AECONSTS.MN, "storeonactor", {
+        name: game.i18n.localize(`AE.settings.storeonactor.title`),
+        hint: game.i18n.localize(`AE.settings.storeonactor.hint`),
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+      })
 });
 
 Hooks.once('ready', async function() {

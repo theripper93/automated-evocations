@@ -20,6 +20,16 @@
             "heart": "Heart",
             "music": "Music",
             "fourelements": "Four Elements"
-        } 
+        }, 
+        "settings":{
+            "storeonactor":{
+                "title": "Store Companions on Actor",
+                "hint": "Store the companions on the actor instead of the user by default."
+            },
+            "enableautomations":{
+                "title": "Enable Automations",
+                "hint": "Enable the companion automation system on spellcast."
+            }
+        }
     }
 }

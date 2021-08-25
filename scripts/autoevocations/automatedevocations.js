@@ -1,5 +1,5 @@
 Hooks.on("createChatMessage", (chatMessage) => {
-  if (chatMessage.data.user !== game.user.id) return;
+  if (chatMessage.data.user !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
   let spellName =
     chatMessage.data.flavor ||
     chatMessage.data.flags.betterrolls5e?.entries[0]?.title;
