@@ -88,7 +88,7 @@ class CompanionManager extends FormApplication {
       .val();
     const tokenData = await actor.getTokenData();
     const posData = await warpgate.crosshairs.show(
-      1,
+      Math.max(tokenData.width,tokenData.height)*tokenData.scale,
       "modules/automated-evocations/assets/black-hole-bolas.webp",
       ""
     );
