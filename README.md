@@ -163,6 +163,7 @@ const customanims = {
     fn: "light2",
     time: 650,
     name: "Energy 2",
+    group: "My Group" //optional
   },
 };
 
@@ -200,7 +201,14 @@ await new Sequence()
 
 ## Jack Kerouac's
 
-The included assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module. (used with permission)
+The Fire, Air, Lightning, Water, Energy, Magic, Heart, Music, Four Elements animations assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module. (used with permission)
+
+## JB2A
+
+The  Music 2, Darkness, Ice, Conjuration, Storm animations assets are courtesy of JB2A (Free animated assets), i strongly reccomend checking out their patreon for many more amazing animations and variations. (used with permission)
+
+https://discord.gg/A59GAZwB9M
+https://www.patreon.com/JB2A
 
 ## Sequencer
 
