@@ -96,7 +96,12 @@ class CompanionManager extends FormApplication {
       this.maximize();  
       return;
     }
-    AECONSTS.animationFunctions[animation].fn(posData, tokenData);
+    if(typeof AECONSTS.animationFunctions[animation].fn == "string"){
+      game.macros.getName(AECONSTS.animationFunctions[animation].fn).execute(posData,tokenData);
+    }else{
+      AECONSTS.animationFunctions[animation].fn(posData, tokenData);
+    }
+    
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
     const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: game.user.character || _token.actor});
