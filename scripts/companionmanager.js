@@ -111,7 +111,8 @@ class CompanionManager extends FormApplication {
       {},
       { duplicates }
     );
-    this.maximize();  
+    if(game.settings.get(AECONSTS.MN, "autoclose")) this.close();
+    else this.maximize();  
   }
 
   async _onRemoveCompanion(event) {

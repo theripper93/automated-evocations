@@ -40,6 +40,10 @@
             "enableautomations":{
                 "title": "Enable Automations",
                 "hint": "Enable the companion automation system on spellcast."
+            },
+            "autoclose": {
+                "title": "Auto-Close",
+                "hint": "Automatically close the companion window after summoning."
             }
         }
     }

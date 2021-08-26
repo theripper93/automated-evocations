@@ -23,6 +23,14 @@ Hooks.once("init", async function () {
     type: Object,
     default: {},
   });
+  game.settings.register(AECONSTS.MN, "autoclose", {
+    name: game.i18n.localize(`AE.settings.autoclose.title`),
+    hint: game.i18n.localize(`AE.settings.autoclose.hint`),
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
   game.settings.register(AECONSTS.MN, "enableautomations", {
     name: game.i18n.localize(`AE.settings.enableautomations.title`),
     hint: game.i18n.localize(`AE.settings.enableautomations.hint`),
