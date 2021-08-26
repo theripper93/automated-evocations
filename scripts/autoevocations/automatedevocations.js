@@ -8,12 +8,9 @@ Hooks.on("createChatMessage", (chatMessage) => {
   if (system[spellName]) {
     //attempt to get spell level
     let spellLevel;
-    try {
-      spellLevel = MidiQOL.Workflow.getWorkflow(
-        chatMessage.data.flags["midi-qol"].workflowId
-      ).itemLevel;
-    } catch {}
-
+    const midiLevel = typeof MidiQOL !== "undefined" ? MidiQOL.Workflow.getWorkflow(chatMessage.data.flags["midi-qol"].workflowId).itemLevel : undefined;
+    const brLevel = chatMessage.data.flags?.betterrolls5e?.params?.slotLevel
+    spellLevel = midiLevel || brLevel || 0;
     let summonData = [];
     const data = {level:spellLevel}
     const creatures = typeof system[spellName] === "function" ? system[spellName](data) : system[spellName];
