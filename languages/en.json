@@ -44,6 +44,10 @@
             "autoclose": {
                 "title": "Auto-Close",
                 "hint": "Automatically close the companion window after summoning."
+            },
+            "hidebutton":{
+                "title": "Hide Companion Button",
+                "hint": "Hide the companion button on the character sheet."
             }
         }
     }

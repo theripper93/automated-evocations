@@ -159,7 +159,7 @@ class CompanionManager extends FormApplication {
 			<div class="warpgate-btn" id="summon-companion" data-aid="${actor.id}"></div>
 		</div>
     	<span class="actor-name">${actor.data.name}</span>
-		<div class="companion-number"><input type="number" class="fancy-input" step="1" id="companion-number-val" value="${
+		<div class="companion-number"><input type="number" min="1" max="99" class="fancy-input" step="1" id="companion-number-val" value="${
       data.number || 1
     }"></div>
     	<select class="anim-dropdown">

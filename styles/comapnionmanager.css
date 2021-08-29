@@ -1,5 +1,5 @@
 #companionManager{
-    min-width: 300px;
+    min-width: 320px;
 }
 
 #companionManager .window-content{
@@ -95,9 +95,19 @@
     height: 27px;
 }
 
+#companion-list select{
+    border-left: 0;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 27px;
+}
+
 .actor-name{
     margin-left: 1em;
     margin-right: 1em;
+    min-width: 70px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .actor-name:hover{

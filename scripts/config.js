@@ -47,6 +47,14 @@ Hooks.once("init", async function () {
     type: Boolean,
     default: false,
   });
+  game.settings.register(AECONSTS.MN, "hidebutton", {
+    name: game.i18n.localize(`AE.settings.hidebutton.title`),
+    hint: game.i18n.localize(`AE.settings.hidebutton.hint`),
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 });
 
 Hooks.once("ready", async function () {
@@ -76,14 +84,8 @@ Hooks.once("ready", async function () {
   //new CompanionManager().render(true)
 });
 
-Hooks.on("rendersheet", (app, html) => {
-  const button = `<a class="open-cm"><i class="fas fa-users"></i>${game.i18n.localize(
-    "AE.actorSheetBtn"
-  )}</a>`;
-  html.find(".window-title").after(button);
-});
-
 Hooks.on("getActorSheetHeaderButtons", (app, buttons) => {
+  if(game.settings.get(AECONSTS.MN, "hidebutton")) return;
   buttons.unshift({
     icon: "fas fa-users",
     class: "open-cm",
