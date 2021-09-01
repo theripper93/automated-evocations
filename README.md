@@ -85,26 +85,26 @@ WARNING: Setting this hidden setting will override any previous value, so you wa
 Example:
 
 ```js
-const data = {
-  "Giant Insect":[
-    {
-      creature: "Giant Centipede",
-      number: 10,
-    },
-    {
-      creature: "Giant Spider",
-      number: 3,
-    },
-    {
-      creature: "Giant Wasp",
-      number: 5,
-    },
-    {
-      creature: "Giant Scorpion",
-      number: 1,
-    },
-  ]
-}
+const data = game.settings.get(AECONSTS.MN, "customautospells")
+
+data["Summon Greater Demon"]=[
+      {
+        creature: "Demon name 1",
+        number: 1,
+      },
+      {
+        creature: "Demon name 2",
+        number: 1,
+      },
+      {
+        creature: "Demon name 2",
+        number: 1,
+      },
+      {
+        creature: "Demon name 4",
+        number: 1,
+      },
+    ]
 game.settings.set(AECONSTS.MN, "customautospells", data)
 ```
 
