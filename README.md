@@ -80,7 +80,7 @@ To add your own settings, you can merge your own configs to the default one. For
 
 Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.set(AECONSTS.MN, "customautospells", yourData)`
 
-WARNING: Setting this hidden setting will override any previous value, so you want to keep a file with all you custom setting and add to it every time you want to apply it!
+WARNING: Completely replacing this hidden setting will override any previous value
 
 Example:
 
