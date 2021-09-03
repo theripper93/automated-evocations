@@ -91,6 +91,7 @@ data["Summon Greater Demon"]=[
       {
         creature: "Demon name 1",
         number: 1,
+        animation: "fire" //Optional (check AECONSTS.animationFunctions to see the animations names)
       },
       {
         creature: "Demon name 2",
