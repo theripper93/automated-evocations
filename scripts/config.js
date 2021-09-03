@@ -55,6 +55,14 @@ Hooks.once("init", async function () {
     type: Boolean,
     default: false,
   });
+  game.settings.register(AECONSTS.MN, "restrictOwned", {
+    name: game.i18n.localize(`AE.settings.restrictOwned.title`),
+    hint: game.i18n.localize(`AE.settings.restrictOwned.hint`),
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 });
 
 Hooks.once("ready", async function () {

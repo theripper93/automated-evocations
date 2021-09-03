@@ -48,6 +48,10 @@
             "hidebutton":{
                 "title": "Hide Companion Button",
                 "hint": "Hide the companion button on the character sheet."
+            },
+            "restrictOwned":{
+                "title": "Only Owned Actos",
+                "hint": "Restrict the companion list to only show owned companions actors."
             }
         }
     }

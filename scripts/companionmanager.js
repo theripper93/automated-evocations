@@ -150,6 +150,8 @@ class CompanionManager extends FormApplication {
   generateLi(data) {
     const actor = game.actors.get(data.id) || game.actors.getName(data.id);
     if (!actor) return "";
+    const restricted = game.settings.get(AECONSTS.MN, "restrictOwned")
+    if(restricted && !actor.isOwner) return "";
     let $li = $(`
 	<li id="companion" class="companion-item" data-aid="${
     actor.id
@@ -231,3 +233,5 @@ class SimpleCompanionManager extends CompanionManager {
     super.close(true);
   }
 }
+
+
