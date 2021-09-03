@@ -80,31 +80,32 @@ To add your own settings, you can merge your own configs to the default one. For
 
 Once you built the object you wanna merge, simply save it to the hidden game setting  `game.settings.set(AECONSTS.MN, "customautospells", yourData)`
 
-WARNING: Setting this hidden setting will override any previous value, so you want to keep a file with all you custom setting and add to it every time you want to apply it!
+WARNING: Completely replacing this hidden setting will override any previous value
 
 Example:
 
 ```js
-const data = {
-  "Giant Insect":[
-    {
-      creature: "Giant Centipede",
-      number: 10,
-    },
-    {
-      creature: "Giant Spider",
-      number: 3,
-    },
-    {
-      creature: "Giant Wasp",
-      number: 5,
-    },
-    {
-      creature: "Giant Scorpion",
-      number: 1,
-    },
-  ]
-}
+const data = game.settings.get(AECONSTS.MN, "customautospells")
+
+data["Summon Greater Demon"]=[
+      {
+        creature: "Demon name 1",
+        number: 1,
+        animation: "fire" //Optional (check AECONSTS.animationFunctions to see the animations names)
+      },
+      {
+        creature: "Demon name 2",
+        number: 1,
+      },
+      {
+        creature: "Demon name 2",
+        number: 1,
+      },
+      {
+        creature: "Demon name 4",
+        number: 1,
+      },
+    ]
 game.settings.set(AECONSTS.MN, "customautospells", data)
 ```
 
