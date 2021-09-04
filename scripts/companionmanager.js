@@ -76,6 +76,7 @@ class CompanionManager extends FormApplication {
   }
 
   async _onSummonCompanion(event) {
+    debugger
     this.minimize();
     const animation = $(event.currentTarget.parentElement.parentElement)
       .find(".anim-dropdown")
@@ -103,7 +104,7 @@ class CompanionManager extends FormApplication {
     
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
-    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: game.user.character || _token.actor});
+    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor});
     warpgate.spawnAt(
       { x: posData.x, y: posData.y },
       tokenData,
@@ -212,8 +213,9 @@ class CompanionManager extends FormApplication {
 }
 
 class SimpleCompanionManager extends CompanionManager {
-  constructor(summonData,spellLevel) {
+  constructor(summonData,spellLevel,actor) {
     super();
+    this.caster = actor;
     this.summons = summonData;
     this.spellLevel = spellLevel
   }
