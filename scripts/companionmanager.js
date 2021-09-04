@@ -76,7 +76,6 @@ class CompanionManager extends FormApplication {
   }
 
   async _onSummonCompanion(event) {
-    debugger
     this.minimize();
     const animation = $(event.currentTarget.parentElement.parentElement)
       .find(".anim-dropdown")
