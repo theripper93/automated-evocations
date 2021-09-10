@@ -1,15 +1,48 @@
 # Automated Evocations
+
 A user interface to manage companions with summoning animations and automated summoning for spells
 
 ![Latest Release Download Count](https://img.shields.io/github/downloads/theripper93/automated-evocations/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fautomated-evocations&colorB=03ff1c&style=for-the-badge)](https://forge-vtt.com/bazaar#package=automated-evocations) ![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Ftheripper93%2Fautomated-evocations%2Fmain%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge) [![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/theripper93) [![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/F53gBjR97G)
 
 # Attention:
 
-## For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
+### For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
 
-## While not a Dependency, Advanced Macros is required for the custom summons
+### Currently compatible Warp Gate version 1.7.2 - please consider downgrading if you experience issues
 
-## Currently compatible Warp Gate version 1.7.2 - please consider downgrading if you experience issues
+## Installation
+
+It's always easiest to install modules from the in game add-on browser.
+
+To install this module manually:
+1.  Inside the Foundry "Configuration and Setup" screen, click "Add-on Modules"
+2.  Click "Install Module"
+3.  In the "Manifest URL" field, paste the following url:
+`https://raw.githubusercontent.com/theripper93/automated-evocations/master/module.json`
+4.  Click 'Install' and wait for installation to complete
+5.  Don't forget to enable the module in game using the "Manage Module" button
+
+### sequencer
+
+This module uses the [sequencer](https://github.com/fantasycalendar/FoundryVTT-Sequencer/) library. It is a hard dependency.
+
+### warpgate
+
+This module uses the [warpgate](https://github.com/trioderegion/warpgate) library. It is a hard dependency and it is recommended for the best experience and compatibility with other modules.
+
+**NOTE: Currently compatible Warp Gate version 1.7.2 - please consider downgrading if you experience issues**
+
+### advanced-macros
+
+This module uses the [advanced-macros](https://github.com/League-of-Foundry-Developers/fvtt-advanced-macros) library. It is a optional dependency.
+
+**NOTE: This is required for the custom summons**
+
+### midi-qol
+
+This module uses the [midi-qol](https://gitlab.com/tposney/midi-qol) library. It is a optional dependency.
+
+**NOTE: This is requires if you enable the companion automation system on spellcast**
 
 # How to use
 
@@ -200,30 +233,39 @@ await new Sequence()
 .play()
 ```
 
-# Credits \ License
+## Issues
 
-## Jack Kerouac's
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/theripper93/automated-evocations/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
 
-The Fire, Air, Lightning, Water, Energy, Magic, Heart, Crescendo, Four Elements animations assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module. (used with permission)
+## License
 
-## JB2A
+- **Jack Kerouac's**: [GPL-3.0 License](https://github.com/jackkerouac/animated-tokens/blob/main/LICENSE)
 
-The  Chord, Darkness, Ice, Conjuration, Storm animations assets are courtesy of JB2A (Free animated assets), i strongly reccomend checking out their patreon for many more amazing animations and variations. (used with permission)
+- **JB2A**: ???
 
-https://discord.gg/A59GAZwB9M
-https://www.patreon.com/JB2A
+- **Sequencer**: [Mit License](https://github.com/fantasycalendar/FoundryVTT-Sequencer/blob/master/LICENSE)
 
-## Sequencer
+- **Warpgate**: [GPL-3.0 License](https://github.com/trioderegion/warpgate/blob/master/LICENSE)
 
-This module is used to play the animations https://github.com/fantasycalendar/FoundryVTT-Sequencer
+- **Automated Evocations**: ???
 
-## Warpgate
+- **Game Icons**: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
-This module is used for the spawning https://github.com/trioderegion/warpgate
+This package is under an [GPL-3.0 License](LICENSE) and the [Foundry Virtual Tabletop Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
-## Game Icons
+## Credits
 
-Some images used are from https://game-icons.net/
+- **Jack Kerouac's**: The Fire, Air, Lightning, Water, Energy, Magic, Heart, Crescendo, Four Elements animations assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module. (used with permission)
+
+- **JB2A**: The  Chord, Darkness, Ice, Conjuration, Storm animations assets are courtesy of JB2A (Free animated assets), i strongly reccomend checking out their patreon for many more amazing animations and variations. (used with permission) https://discord.gg/A59GAZwB9M https://www.patreon.com/JB2A
+
+- **Sequencer**: This module is used to play the animations https://github.com/fantasycalendar/FoundryVTT-Sequencer
+
+- **Warpgate**: This module is used for the spawning https://github.com/trioderegion/warpgate
+
+- **Automated Evocations**: This module is used for the inspiration and base functionality https://github.com/theripper93/automated-evocations
+
+- **Game Icons**: Some images used are from https://game-icons.net/
 
 
 
