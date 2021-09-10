@@ -247,8 +247,6 @@ Any issues, bugs, or feature requests are always welcome to be reported directly
 
 - **Warpgate**: [GPL-3.0 License](https://github.com/trioderegion/warpgate/blob/master/LICENSE)
 
-- **Automated Evocations**: ???
-
 - **Game Icons**: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 This package is under an [GPL-3.0 License](LICENSE) and the [Foundry Virtual Tabletop Limited License Agreement for module development](https://foundryvtt.com/article/license/).
@@ -262,8 +260,6 @@ This package is under an [GPL-3.0 License](LICENSE) and the [Foundry Virtual Tab
 - **Sequencer**: This module is used to play the animations https://github.com/fantasycalendar/FoundryVTT-Sequencer
 
 - **Warpgate**: This module is used for the spawning https://github.com/trioderegion/warpgate
-
-- **Automated Evocations**: This module is used for the inspiration and base functionality https://github.com/theripper93/automated-evocations
 
 - **Game Icons**: Some images used are from https://game-icons.net/
 
