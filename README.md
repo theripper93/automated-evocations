@@ -249,7 +249,7 @@ Any issues, bugs, or feature requests are always welcome to be reported directly
 
 - **Game Icons**: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
-This package is under an [GPL-3.0 License](LICENSE) and the [Foundry Virtual Tabletop Limited License Agreement for module development](https://foundryvtt.com/article/license/).
+This package is under the [Foundry Virtual Tabletop Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
 ## Credits
 
