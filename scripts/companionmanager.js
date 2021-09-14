@@ -111,6 +111,13 @@ class CompanionManager extends FormApplication {
       {},
       { duplicates }
     );
+    console.log("Automated Evocations Summoning:", {
+      assignedActor: this.caster || game?.user?.character || _token?.actor,
+      spellLevel: this.spellLevel || 0,
+      duplicates: duplicates,
+      warpgateData: customTokenData || {},
+      summon: actor,
+    })
     if(game.settings.get(AECONSTS.MN, "autoclose")) this.close();
     else this.maximize();  
   }
