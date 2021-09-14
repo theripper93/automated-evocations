@@ -117,6 +117,8 @@ class CompanionManager extends FormApplication {
       duplicates: duplicates,
       warpgateData: customTokenData || {},
       summon: actor,
+      tokenData: tokenData,
+      posData: posData,
     })
     if(game.settings.get(AECONSTS.MN, "autoclose")) this.close();
     else this.maximize();  
