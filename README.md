@@ -79,6 +79,8 @@ Every time an actor named `Arcane Hand` is summoned, the custom data will be app
 
 ## Supported spells (automated)
 
+To use the included automations you will need to import both the Actor and the corresponding Macro from Automated Evocation compendiums! (these also require the module Advanced Macros for the autoscaling to work)
+
 The ever expanding list of spells currently includes:
 All the SRD spells for dnd5e, if something is missing let me know
 
