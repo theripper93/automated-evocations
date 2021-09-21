@@ -52,6 +52,10 @@
             "restrictOwned":{
                 "title": "Only Owned Actors",
                 "hint": "Restrict the companion list to only show owned companions actors."
+            },
+            "restrictOnlyGM": {
+              "title": "Only GM can see Companion button",
+              "hint": "Restrict the companion list to GMs only"
             }
         }
     }

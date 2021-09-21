@@ -63,6 +63,14 @@ Hooks.once("init", async function () {
     type: Boolean,
     default: false,
   });
+  game.settings.register(AECONSTS.MN, "restrictOnlyGM", {
+    name: game.i18n.localize(`AE.settings.restrictOnlyGM.title`),
+    hint: game.i18n.localize(`AE.settings.restrictOnlyGM.hint`),
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: false,
+  });
 });
 
 Hooks.once("ready", async function () {
@@ -83,10 +91,10 @@ Hooks.once("ready", async function () {
     });
   }
   AECONSTS.animations = Object.keys(AECONSTS.animations).sort().reduce(
-    (obj, key) => { 
-      obj[key] = AECONSTS.animations[key]; 
+    (obj, key) => {
+      obj[key] = AECONSTS.animations[key];
       return obj;
-    }, 
+    },
     {}
   );
   //new CompanionManager().render(true)
@@ -94,6 +102,12 @@ Hooks.once("ready", async function () {
 
 Hooks.on("getActorSheetHeaderButtons", (app, buttons) => {
   if(game.settings.get(AECONSTS.MN, "hidebutton")) return;
+
+  const restrictedOnlyGM = game.settings.get(AECONSTS.MN, 'restrictOnlyGM');
+  if (restrictedOnlyGM && !game.user?.isGM) {
+    return;
+  }
+
   buttons.unshift({
     icon: "fas fa-users",
     class: "open-cm",
