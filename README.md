@@ -43,7 +43,7 @@ You can assign cusom macros to specific actors
 
 `summon`: the actor that's getting summoned
 
-`spellLevel`: the level of the spell that triggered the summoning (requires midiqol)
+`spellLevel`: the level of the spell that triggered the summoning
 
 `duplicates`: how many creatures are getting summoned
 
