@@ -43,7 +43,7 @@ You can assign cusom macros to specific actors
 
 `summon`: the actor that's getting summoned
 
-`spellLevel`: the level of the spell that triggered the summoning (requires midiqol)
+`spellLevel`: the level of the spell that triggered the summoning
 
 `duplicates`: how many creatures are getting summoned
 
@@ -78,6 +78,8 @@ return {
 Every time an actor named `Arcane Hand` is summoned, the custom data will be applied
 
 ## Supported spells (automated)
+
+To use the included automations you will need to import both the Actor and the corresponding Macro from Automated Evocation compendiums! (these also require the module Advanced Macros for the autoscaling to work)
 
 The ever expanding list of spells currently includes:
 All the SRD spells for dnd5e, if something is missing let me know
