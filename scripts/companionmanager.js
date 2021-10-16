@@ -86,11 +86,11 @@ class CompanionManager extends FormApplication {
       .find("#companion-number-val")
       .val();
     const tokenData = await actor.getTokenData();
-    const posData = await warpgate.crosshairs.show(
-      Math.max(tokenData.width,tokenData.height)*tokenData.scale,
-      "modules/automated-evocations/assets/black-hole-bolas.webp",
-      ""
-    );
+    const posData = await warpgate.crosshairs.show({
+      size: Math.max(tokenData.width,tokenData.height)*tokenData.scale,
+      icon: "modules/automated-evocations/assets/black-hole-bolas.webp",
+      label: "",
+    });
     if (posData.cancelled) {
       this.maximize();  
       return;
