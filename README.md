@@ -8,6 +8,9 @@ A user interface to manage companions with summoning animations and automated su
 
 ## For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
 
+
+## Foundry V9 Users: Due to changes to core foundry, Warpgate is no longer able to create tokens if the player is not **OWNER** of the actor - until this changes (if it will change) you will need to give players ownership over actors you wish to have them summon!
+
 ## While not a Dependency, Advanced Macros is required for the custom summons
 
 ## Currently compatible Warp Gate version 1.8.1 - please consider downgrading if you experience issues
@@ -63,7 +66,7 @@ return {
       "data.attributes.hp.value":args[0].assignedActor?.data.data.attributes.hp.max || 1,
     },
     embedded: {
-        item: {
+        Item: {
             "Clenched Fist": {
                 "data.attackBonus": args[0].assignedActor?.data.data.attributes.spelldc-8+args[0].assignedActor?.data.data.bonuses.msak.attack,
                 "data.damage.parts":[[`${((args[0].spellLevel || 5)-5)*2+4}d8`,"force"]]
