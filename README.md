@@ -6,7 +6,7 @@ A user interface to manage companions with summoning animations and automated su
 
 # Attention:
 
-## The Companion Manager works on all Systems, while the automations only work on DnD5e
+## The Companion Manager works on all Systems, while the automations only work on DnD5e. To configure automations on other systems check `Manually invoking the comanion manger`
 
 ## For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
 
@@ -176,6 +176,24 @@ await new Sequence()
     .atLocation(template)
     .scale(Math.max(tokenData.width,tokenData.height)*tokenData.scale*0.35)
 .play()
+```
+
+## Manually invoking the comanion manger
+### If you are on non DND5E systems you can trigger the companion manager for specific spells with a macro or the module Item Macro
+
+```js
+new SimpleCompanionManager([
+  {
+    id: "actorid", //id of the actor to summon, if you have the name use game.actors.getName(name).id
+    animation: "animationid",//id of the animation - set to undefined for default
+    number: 1,//number of creatures to spawn
+  },
+  {
+    id: "actorid",
+    animation: "animationid",
+    number: 1,
+  }
+], spellLevel, actor); //spell level is the spell level of the spell that summons the companions (will be passed to the companion macro), actor is the actor that summons the companions
 ```
 
 # Credits \ License
