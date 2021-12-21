@@ -6,7 +6,7 @@ A user interface to manage companions with summoning animations and automated su
 
 # Attention:
 
-## The Companion Manager works on all Systems, while the automations only work on DnD5e. To configure automations on other systems check `Manually invoking the companion manger on spell cast`
+## The Companion Manager works on all Systems, while the automations only work on DnD5e, PF2E. To configure automations on other systems check `Manually invoking the companion manger on spell cast`
 
 ## For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
 
