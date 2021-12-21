@@ -1,15 +1,21 @@
 # Automated Evocations
+## Before opening an issue read [THIS](https://github.com/theripper93/Levels/blob/v9/ISSUES.md)
 A user interface to manage companions with summoning animations and automated summoning for spells
 
 ![Latest Release Download Count](https://img.shields.io/github/downloads/theripper93/automated-evocations/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fautomated-evocations&colorB=03ff1c&style=for-the-badge)](https://forge-vtt.com/bazaar#package=automated-evocations) ![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Ftheripper93%2Fautomated-evocations%2Fmain%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge) [![alt-text](https://img.shields.io/badge/-Patreon-%23ff424d?style=for-the-badge)](https://www.patreon.com/theripper93) [![alt-text](https://img.shields.io/badge/-Discord-%235662f6?style=for-the-badge)](https://discord.gg/F53gBjR97G)
 
 # Attention:
 
+## The Companion Manager works on all Systems, while the automations only work on DnD5e. To configure automations on other systems check `Manually invoking the companion manger on spell cast`
+
 ## For the summoning to work you need the actors imported in your world and your players need world level permission to create tokens. For the special spells\actor you can import eveything from both the actor and macro compendiums of Automated Evocations
+
+
+## Foundry V9 Users: Due to changes to core foundry, Warpgate is no longer able to create tokens if the player is not **OWNER** of the actor - until this changes (if it will change) you will need to give players ownership over actors you wish to have them summon!
 
 ## While not a Dependency, Advanced Macros is required for the custom summons
 
-## Currently compatible Warp Gate version 1.7.2 - please consider downgrading if you experience issues
+## Currently compatible Warp Gate version 1.8.1 - please consider downgrading if you experience issues
 
 # How to use
 
@@ -62,7 +68,7 @@ return {
       "data.attributes.hp.value":args[0].assignedActor?.data.data.attributes.hp.max || 1,
     },
     embedded: {
-        item: {
+        Item: {
             "Clenched Fist": {
                 "data.attackBonus": args[0].assignedActor?.data.data.attributes.spelldc-8+args[0].assignedActor?.data.data.bonuses.msak.attack,
                 "data.damage.parts":[[`${((args[0].spellLevel || 5)-5)*2+4}d8`,"force"]]
@@ -170,6 +176,24 @@ await new Sequence()
     .atLocation(template)
     .scale(Math.max(tokenData.width,tokenData.height)*tokenData.scale*0.35)
 .play()
+```
+
+## Manually invoking the companion manger on spell cast
+### If you are on non DND5E systems you can trigger the companion manager for specific spells with a macro or the module Item Macro
+
+```js
+new SimpleCompanionManager([
+  {
+    id: "actorid", //id of the actor to summon, if you have the name use game.actors.getName(name).id
+    animation: "animationid",//id of the animation - set to undefined for default
+    number: 1,//number of creatures to spawn
+  },
+  {
+    id: "actorid",
+    animation: "animationid",
+    number: 1,
+  }
+], spellLevel, actor); //spell level is the spell level of the spell that summons the companions (will be passed to the companion macro), actor is the actor that summons the companions
 ```
 
 # Credits \ License
