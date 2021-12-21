@@ -1,8 +1,9 @@
 Hooks.once("ready", async function () {
   if (!game.automatedevocations) {
     game.automatedevocations = {};
+    game.automatedevocations[game.system.id] = {};
   }
- if(game.system.id != "dnd5e")return;
+ if(game.system.id == "dnd5e"){
   game.automatedevocations.dnd5e = {
     "Arcane Hand":[
       {
@@ -337,5 +338,6 @@ Hooks.once("ready", async function () {
       },
     ],
   };
+  }
   game.automatedevocations[game.system.id] = mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
 });
