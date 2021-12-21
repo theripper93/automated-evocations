@@ -223,7 +223,6 @@ class CompanionManager extends FormApplication {
 class SimpleCompanionManager extends CompanionManager {
   constructor(summonData,spellLevel,actor) {
     super();
-    debugger
     this.caster = actor;
     this.summons = summonData;
     this.spellLevel = spellLevel
@@ -244,18 +243,3 @@ class SimpleCompanionManager extends CompanionManager {
     super.close(true);
   }
 }
-
-
-new SimpleCompanionManager([
-  {
-    id: "actorid", //id of the actor to summon, if you have the name use game.actors.getName(name).id
-    animation: "animationid",//id of the animation - set to undefined for default
-    number: 1,//number of creatures to spawn
-  },
-  {
-    id: "actorid", //id of the actor to summon, if you have the name use game.actors.getName(name).id
-    animation: "animationid",//id of the animation - set to undefined for default
-    number: 1,//number of creatures to spawn
-  }
-], spellLevel, actor); //spell level is the spell level of the spell that summons the companions (will be passed to the companion macro), actor is the actor that summons the companions
-
