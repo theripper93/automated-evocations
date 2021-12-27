@@ -100,6 +100,7 @@ Hooks.once("ready", async function () {
       creatures.push({
         creature: servitor.name,
         number: 1,
+        animation: "magic2",
       });
     }
     const extraCreatures = ["Raven", "Eagle", "Guard Dog", "Black Bear", "Giant Bat", "Leopard", "Great White Shark", "Tiger"]
@@ -112,6 +113,7 @@ if(data.spellLevel >= 4) arrayendpoint = 8;
         creatures.push({
             creature: extraCreatures[i],
             number: 1,
+            animation: "magic2",
         });
     }
     return creatures;
