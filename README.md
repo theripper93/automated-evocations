@@ -198,6 +198,9 @@ new SimpleCompanionManager([
 
 # Credits \ License
 
+## PF2E Support
+TomChristoffer#6777
+
 ## Jack Kerouac's
 
 The Fire, Air, Lightning, Water, Energy, Magic, Heart, Crescendo, Four Elements animations assets are from Jack Kerouac's amazing https://github.com/jackkerouac/animated-spell-effects-cartoon module. (used with permission)
