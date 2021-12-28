@@ -43,7 +43,8 @@ Hooks.on("createChatMessage", async (chatMessage) => {
   if (system[spellName]) {
     let summonData = [];
     const spellLevel = $(chatMessage.data.content)?.data("spell-lvl")
-    const data = {level:item}
+    const data = {level:item, spellLevel:spellLevel}
+	//const data = {level:item}
     const creatures = typeof system[spellName] === "function" ? system[spellName](data) : system[spellName];
     for (let creature of creatures) {
       if (creature.level && spellLevel && creature.level >= spellLevel)
