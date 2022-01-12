@@ -85,7 +85,7 @@ class CompanionManager extends FormApplication {
     const duplicates = $(event.currentTarget.parentElement.parentElement)
       .find("#companion-number-val")
       .val();
-    const tokenData = await actor.getTokenData();
+    const tokenData = await actor.getTokenData({elevation: _token?.data?.elevation ?? 0});
     const posData = await warpgate.crosshairs.show({
       size: Math.max(tokenData.width,tokenData.height)*tokenData.scale,
       icon: "modules/automated-evocations/assets/black-hole-bolas.webp",
@@ -104,6 +104,7 @@ class CompanionManager extends FormApplication {
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
     const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor});
+
     warpgate.spawnAt(
       { x: posData.x, y: posData.y },
       tokenData,
