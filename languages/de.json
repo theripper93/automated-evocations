@@ -4,8 +4,8 @@
             "companionManager":{
                 "title": "Begleiter Verwalter",
                 "confirm": {
-                    "title": "Lösche Begleiter Companion",
-                    "content": "<p>Bist du dir sicher, dass du diesen Begleiter entfernen möchtest?</p>"
+                    "title": "L&ouml;sche Begleiter Companion",
+                    "content": "<p>Bist du dir sicher, dass du diesen Begleiter entfernen m&ouml;chtest?</p>"
                 }
             }
         },
@@ -16,14 +16,14 @@
             "lightning": "Blitz",
             "water": "Wasser",
             "energy1": "Energie",
-            "magic1": "Magiie",
+            "magic1": "Magie",
             "heart": "Doki-Doki",
             "music": "Crescendo",
             "fourelements": "Vier Elemente",
             "music2": "Noten",
             "darkness": "Dunkelheit",
             "ice1": "Eis",
-            "magic2": "Beschwörung",
+            "magic2": "Beschw&ouml;rung",
             "lightning2": "Sturm"
 
         },
@@ -35,23 +35,23 @@
         "settings":{
             "storeonactor":{
                 "title": "Speichere Begleiter auf Akteur",
-                "hint": "Speichert die Begleiter standardtmäßig auf dem Akteur anstatt auf dem Benutzer."
+                "hint": "Speichert die Begleiter standardtm&auml;&szlig;ig auf dem Akteur anstatt auf dem Benutzer."
             },
             "enableautomations":{
                 "title": "Aktiviere Automatisierungen",
                 "hint": "Aktiviere das Begleiter Automatisierungssystem beim Wirken von Zaubern."
             },
             "autoclose": {
-                "title": "Automatisches Schließen",
-                "hint": "Schließe automatisch das Begleiterfenster nach der Beschwörung."
+                "title": "Automatisches Schlie&szlig;en",
+                "hint": "Schlie&szlig;e automatisch das Begleiterfenster nach der Beschw&ouml;rung."
             },
             "hidebutton":{
-                "title": "Verstecke Begleiter Schaltfläche",
-                "hint": "Verstecke die Begleiter Schaltfläche auf Charakterbögen."
+                "title": "Verstecke Begleiter Schaltfl&auml;che",
+                "hint": "Verstecke die Begleiter Schaltfl&auml;che auf Charakterb&ouml;gen."
             },
             "restrictOwned":{
                 "title": "Nur Akteure in Besitz",
-                "hint": "Schränke die Begleiterliste auf Akteure ein, bei denen der Benutzer der Besitzer ist."
+                "hint": "Schr&auml;nke die Begleiterliste auf Akteure ein, bei denen der Benutzer der Besitzer ist."
             }
         }
     }
