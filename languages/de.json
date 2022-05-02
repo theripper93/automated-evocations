@@ -1,0 +1,58 @@
+{
+    "AE": {
+        "dialogs": {
+            "companionManager":{
+                "title": "Begleiter Verwalter",
+                "confirm": {
+                    "title": "Lösche Begleiter Companion",
+                    "content": "<p>Bist du dir sicher, dass du diesen Begleiter entfernen möchtest?</p>"
+                }
+            }
+        },
+        "actorSheetBtn": "Begleiter",
+        "animations": {
+            "fire": "Feuer",
+            "air": "Luft",
+            "lightning": "Blitz",
+            "water": "Wasser",
+            "energy1": "Energie",
+            "magic1": "Magie",
+            "heart": "Doki-Doki",
+            "music": "Crescendo",
+            "fourelements": "Vier Elemente",
+            "music2": "Noten",
+            "darkness": "Dunkelheit",
+            "ice1": "Eis",
+            "magic2": "Beschwörung",
+            "lightning2": "Sturm"
+
+        },
+        "groups":{
+            "elemental": "Elementar",
+            "magical": "Magisch",
+            "z-none": "Andere"
+        },
+        "settings":{
+            "storeonactor":{
+                "title": "Speichere Begleiter auf Akteur",
+                "hint": "Speichert die Begleiter standardtmäßig auf dem Akteur anstatt auf dem Benutzer."
+            },
+            "enableautomations":{
+                "title": "Aktiviere Automatisierungen",
+                "hint": "Aktiviere das Begleiter Automatisierungssystem beim Wirken von Zaubern."
+            },
+            "autoclose": {
+                "title": "Automatisches Schließen",
+                "hint": "Schließe automatisch das Begleiterfenster nach der Beschwörung."
+            },
+            "hidebutton":{
+                "title": "Verstecke Begleiter Schaltfläche",
+                "hint": "Verstecke die Begleiter Schaltfläche auf Charakterbögen."
+            },
+            "restrictOwned":{
+                "title": "Nur Akteure in Besitz",
+                "hint": "Schränke die Begleiterliste auf Akteure ein, bei denen der Benutzer der Besitzer ist."
+            }
+        }
+    }
+}
