@@ -1,19 +1,21 @@
 Hooks.on("createChatMessage", async (chatMessage) => {
+
   if(game.system.id != "dnd5e")return;
   if (chatMessage.data.user !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
-  let spellName =
-    chatMessage.data.flavor ||
-    canvas.tokens.get(chatMessage?.data?.speaker?.token)?.actor?.items?.get(chatMessage?.data?.flags?.dnd5e?.roll?.itemId)?.data?.name;
+
+  const messageContent = $(chatMessage.data.content);
+  const actorId = messageContent[0].dataset.actorId;
+  const itemId = messageContent[0].dataset.itemId;
+  const spellLevel = parseInt(messageContent[0].dataset.spellLevel);
+  const tokenId = messageContent[0].dataset.tokenId;
+  const token = tokenId ? await fromUuid(tokenId) : null;
+  const actor = token?.actor ?? game.actors.get(actorId);
+  const spellName = actor.items.get(itemId)?.name;
+
   let system = game.automatedevocations[game.system.id];
   if (!system) return;
   if (system[spellName]) {
     //attempt to get spell level
-    let spellLevel;
-    const midiLevel = typeof MidiQOL !== "undefined" && chatMessage.data.flags["midi-qol"] ? MidiQOL.Workflow.getWorkflow(chatMessage.data.flags["midi-qol"].workflowId)?.itemLevel : undefined;
-    const brLevel = chatMessage.data.flags?.betterrolls5e?.params?.slotLevel
-    const coreLevel = $(chatMessage.data.content)?.data("spell-level")
-    spellLevel = midiLevel || brLevel || coreLevel || 0;
-    spellLevel = parseInt(spellLevel);
     let summonData = [];
     const data = {level:spellLevel}
     const creatures = typeof system[spellName] === "function" ? system[spellName](data) : system[spellName];
