@@ -51,6 +51,7 @@
         "label": "Automated Evocations Macros",
         "path": "packs/macros.db",
         "entity": "Macro",
+        "type": "Macro",
         "module": "automated-evocations"
     },
     {
@@ -58,6 +59,7 @@
         "label": "Automated Evocations Summons",
         "path": "packs/actors.db",
         "entity": "Actor",
+        "type": "Actor",
         "module": "automated-evocations"
     }
 ],
