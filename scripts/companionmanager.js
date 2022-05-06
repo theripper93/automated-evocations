@@ -17,6 +17,26 @@ class CompanionManager extends FormApplication {
     };
   }
 
+  static get api() {
+    return {
+      getSummonInfo(args, spellLevel) {
+        const spellDC = args[0].assignedActor?.data.data.attributes.spelldc - 8;
+        return {
+          level: (args[0].spellLevel || spellLevel) - spellLevel,
+          maxHP: args[0].assignedActor?.data.data.attributes.hp.max || 1,
+          modifier: args[0].assignedActor?.data.data.abilities[args[0].assignedActor?.data.data.attributes.spellcasting]?.mod,
+          dc: spellDC,
+          attack: {
+            ms: spellDC + args[0].assignedActor?.data.data.bonuses.msak.attack,
+            rs: spellDC + args[0].assignedActor?.data.data.bonuses.rsak.attack,
+            mw: spellDC + args[0].assignedActor?.data.data.bonuses.mwak.attack,
+            rw: spellDC + args[0].assignedActor?.data.data.bonuses.rwak.attack,
+          }
+        }
+      }
+    }
+  }
+
   getData() {
     return {};
   }
