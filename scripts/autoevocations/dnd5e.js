@@ -11,6 +11,12 @@ Hooks.once("ready", async function () {
         number: 1,
       },
     ],
+    "Flaming Sphere":[
+      {
+        creature: "Flaming Sphere",
+        number: 1,
+      },
+    ],
     "Spiritual Weapon":[
       {
         creature: "Spiritual Weapon",
