@@ -4,6 +4,7 @@ Hooks.on("createChatMessage", async (chatMessage) => {
   if (chatMessage.data.user !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
 
   const messageContent = $(chatMessage.data.content);
+  if(!messageContent.length)return;
   const actorId = messageContent[0].dataset.actorId;
   const itemId = messageContent[0].dataset.itemId;
   const spellLevel = parseInt(messageContent[0].dataset.spellLevel);
