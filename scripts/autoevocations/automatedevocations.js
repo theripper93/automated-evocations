@@ -11,7 +11,8 @@ Hooks.on("createChatMessage", async (chatMessage) => {
   const tokenId = messageContent[0].dataset.tokenId;
   const token = tokenId ? await fromUuid(tokenId) : null;
   const actor = token?.actor ?? game.actors.get(actorId);
-  const spellName = actor.items.get(itemId)?.name;
+  if(!actor) return;
+  const spellName = actor?.items?.get(itemId)?.name;
 
   let system = game.automatedevocations[game.system.id];
   if (!system) return;
