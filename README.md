@@ -42,7 +42,7 @@ For more advanced users you can set the flag with the following command : `actor
 You can assign cusom macros to specific actors
 
 1. Create a macro with this exact name `AE_Companion_Macro(ActorName)` eg. `AE_Companion_Macro(Bat)`, this will get fired any time a creature with that name is summoned
-2. Add code for the custom data, in the context of the macro args[0] contains the following data: 
+2. Add code for the custom data, in the context of the macro `args[0]` contains the following data: 
 
 `summon`: the actor that's getting summoned
 
@@ -54,28 +54,34 @@ You can assign cusom macros to specific actors
 
 The macro must return the custom data.
 
-Example (Arcane Hand auto scaling)
+You can use the `getSummonInfo` API call (`CompanionManager.api.getSummonInfo`), passing in `args` and the base spell level, to get the following information automatically calculated for you:
+* `level`: how many levels above the base spell level the spell as cast at
+* `maxHP`: the actor's max HP
+* `modifier`: the actor's spellcasting ability modifier
+* `dc`: the actor's spellcasting DC
+* `attack.ms`: the melee spell attack bonus of the actor
+* `attack.rs`: the ranged spell attack bonus of the actor
 
-Macro name: `AE_Companion_Macro(Arcane Hand)`
+Example (Flaming Sphere auto scaling)
+
+Macro name: `AE_Companion_Macro(Flaming Sphere)`
 
 ```js
+const summon = CompanionManager.api.getSummonInfo(args, 2);
+const flamingSphere = {
+  sphere: [`${summon.level + 2}d6`, 'fire'],
+}
 return {
-    actor: {
-      "data.attributes.hp.max":args[0].assignedActor?.data.data.attributes.hp.max || 1,
-      "data.attributes.hp.value":args[0].assignedActor?.data.data.attributes.hp.max || 1,
-    },
-    embedded: {
-        Item: {
-            "Clenched Fist": {
-                "data.attackBonus": args[0].assignedActor?.data.data.attributes.spelldc-8+args[0].assignedActor?.data.data.bonuses.msak.attack,
-                "data.damage.parts":[[`${((args[0].spellLevel || 5)-5)*2+4}d8`,"force"]]
-            },
-            "Grasping Hand":{
-                "data.damage.parts":[[`${((args[0].spellLevel || 5)-5)*2+4}d6 + ${args[0].assignedActor?.data.data.abilities[args[0].assignedActor?.data.data.attributes.spellcasting]?.mod || ""}`,"bludgeoning"]]
-            }
-        }
+  embedded: {
+    Item: {
+      "Flaming Sphere": {
+        "data.description.value": `Any creature that ends its turn within 5 feet of the sphere, or has the sphere rammed into it, must make a Dexterity saving throw (DC ${summon.dc}). The creature takes ${flamingSphere.sphere[0]} ${flamingSphere.sphere[1]} damage on a failed save, or half as much damage on a successful one.`,
+        "data.save.dc": summon.dc,
+        "data.damage.parts":[flamingSphere.sphere]
+      }
     }
   }
+}
 ```
 
 Every time an actor named `Arcane Hand` is summoned, the custom data will be applied
