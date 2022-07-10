@@ -33,11 +33,11 @@ Hooks.once("ready", async function () {
         let animals = game.actors
           .filter(
             (a) =>
-              a.data.data.traits.traits.value.includes("animal") &&
-              a.data.data.details.level.value <= multiplier
+              a.system.traits.traits.value.includes("animal") &&
+              a.system.details.level.value <= multiplier
           )
           .sort((a, b) => {
-            return a.data.data.details.level.value < b.data.data.details.level.value ? 1 : -1;
+            return a.system.details.level.value < b.system.details.level.value ? 1 : -1;
           });
         let creatures = [];
         for (let animal of animals) {
@@ -62,11 +62,11 @@ Hooks.once("ready", async function () {
         let undeads = game.actors
           .filter(
             (a) =>
-              a.data.data.traits.traits.value.includes("undead") &&
-              a.data.data.details.level.value <= multiplier
+              a.system.traits.traits.value.includes("undead") &&
+              a.system.details.level.value <= multiplier
           )
           .sort((a, b) => {
-            return a.data.data.details.level.value < b.data.data.details.level.value ? 1 : -1;
+            return a.system.details.level.value < b.system.details.level.value ? 1 : -1;
           });
         let creatures = [];
         for (let undead of undeads) {
@@ -86,14 +86,14 @@ Hooks.once("ready", async function () {
     let servitors = game.actors
       .filter(
         (a) =>
-          (a.data.data.traits.traits.value.includes("fiend") ||
-          a.data.data.traits.traits.value.includes("monitor") ||
-          a.data.data.traits.traits.value.includes("celestial")) &&
-          a.data.data.details.level.value <= servitormultiplier &&
-          a.data.type == "npc"
+          (a.system.traits.traits.value.includes("fiend") ||
+          a.system.traits.traits.value.includes("monitor") ||
+          a.system.traits.traits.value.includes("celestial")) &&
+          a.system.details.level.value <= servitormultiplier &&
+          a.document.type == "npc"
       )
       .sort((a, b) => {
-        return a.data.data.details.level.value < b.data.data.details.level.value ? 1 : -1;
+        return a.system.details.level.value < b.system.details.level.value ? 1 : -1;
       });
     let creatures = [];
     for (let servitor of servitors) {

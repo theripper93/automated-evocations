@@ -88,16 +88,16 @@ Hooks.once("ready", async function () {
       let beasts = game.actors
         .filter(
           (a) =>
-            a.data.data.details.type?.value == "beast" &&
-            a.data.data.details.cr <= 2
+            a.system.details.type?.value == "beast" &&
+            a.system.details.cr <= 2
         )
         .sort((a, b) => {
-          return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+          return a.system.details.cr < b.system.details.cr ? 1 : -1;
         });
       let creatures = [];
       for (let beast of beasts) {
         let number = 1;
-        const cr = beast.data.data.details.cr;
+        const cr = beast.system.details.cr;
         if(cr==2) number = 1;
         else if(cr==1) number = 2;
         else if(cr==0.5) number = 4;
@@ -113,11 +113,11 @@ Hooks.once("ready", async function () {
       let celestials = game.actors
         .filter(
           (a) =>
-            a.data.data.details.type?.value == "celestial" &&
-            a.data.data.details.cr <= 4
+            a.system.details.type?.value == "celestial" &&
+            a.system.details.cr <= 4
         )
         .sort((a, b) => {
-          return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+          return a.system.details.cr < b.system.details.cr ? 1 : -1;
         });
       let creatures = [];
       for (let celestial of celestials) {
@@ -132,11 +132,11 @@ Hooks.once("ready", async function () {
       let elementals = game.actors
         .filter(
           (a) =>
-            a.data.data.details.type?.value == "elemental" &&
-            a.data.data.details.cr <= data.level
+            a.system.details.type?.value == "elemental" &&
+            a.system.details.cr <= data.level
         )
         .sort((a, b) => {
-          return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+          return a.system.details.cr < b.system.details.cr ? 1 : -1;
         });
       let creatures = [];
       for (let elemental of elementals) {
@@ -151,11 +151,11 @@ Hooks.once("ready", async function () {
       let feys = game.actors
         .filter(
           (a) =>
-            a.data.data.details.type?.value == "fey" &&
-            a.data.data.details.cr <= data.level
+            a.system.details.type?.value == "fey" &&
+            a.system.details.cr <= data.level
         )
         .sort((a, b) => {
-          return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+          return a.system.details.cr < b.system.details.cr ? 1 : -1;
         });
       let creatures = [];
       for (let fey of feys) {
@@ -173,17 +173,17 @@ Hooks.once("ready", async function () {
       let elementals = game.actors
         .filter(
           (a) =>
-            a.data.data.details.type?.value == "elemental" &&
-            a.data.data.details.cr <= 2
+            a.system.details.type?.value == "elemental" &&
+            a.system.details.cr <= 2
         )
         .sort((a, b) => {
-          return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+          return a.system.details.cr < b.system.details.cr ? 1 : -1;
         });
 
       let creatures = [];
       for (let elemental of elementals) {
         let number = 1;
-        const cr = elemental.data.data.details.cr;
+        const cr = elemental.system.details.cr;
         if(cr==2) number = 1;
         else if(cr==1) number = 2;
         else if(cr==0.5) number = 4;
@@ -202,16 +202,16 @@ Hooks.once("ready", async function () {
       let feys = game.actors
       .filter(
         (a) =>
-          a.data.data.details.type?.value == "fey" &&
-          a.data.data.details.cr <= data.level
+          a.system.details.type?.value == "fey" &&
+          a.system.details.cr <= data.level
       )
       .sort((a, b) => {
-        return a.data.data.details.cr < b.data.data.details.cr ? 1 : -1;
+        return a.system.details.cr < b.system.details.cr ? 1 : -1;
       });
       let creatures = [];
       for (let fey of feys) {
         let number = 1;
-        const cr = fey.data.data.details.cr;
+        const cr = fey.system.details.cr;
         if(cr==2) number = 1;
         else if(cr==1) number = 2;
         else if(cr==0.5) number = 4;

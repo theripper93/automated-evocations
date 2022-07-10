@@ -1,9 +1,9 @@
 Hooks.on("createChatMessage", async (chatMessage) => {
   try{
     if(game.system.id != "dnd5e")return;
-    if (chatMessage.data.user !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
+    if (chatMessage.author.id !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
   
-    const messageContent = $(chatMessage.data.content);
+    const messageContent = $(chatMessage.content);
     if(!messageContent.length)return;
     const actorId = messageContent[0].dataset.actorId;
     const itemId = messageContent[0].dataset.itemId;
@@ -40,14 +40,14 @@ Hooks.on("createChatMessage", async (chatMessage) => {
 
 Hooks.on("createChatMessage", async (chatMessage) => {
   if(game.system.id != "pf2e")return;
-  if (chatMessage.data.user !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
-  const item = await fromUuid(chatMessage.data.flags.pf2e.origin.uuid)
-  const spellName = item.data.name;
+  if (chatMessage.user !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
+  const item = await fromUuid(chatMessage.flags.pf2e.origin.uuid)
+  const spellName = item.document.name;
   let system = game.automatedevocations[game.system.id];
   if (!system) return;
   if (system[spellName]) {
     let summonData = [];
-    const spellLevel = $(chatMessage.data.content)?.data("spell-lvl")
+    const spellLevel = $(chatMessage.content)?.data("spell-lvl")
     const data = {level:item, spellLevel:spellLevel}
 	//const data = {level:item}
     const creatures = typeof system[spellName] === "function" ? system[spellName](data) : system[spellName];

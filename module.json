@@ -1,80 +1,85 @@
 {
-  "name": "automated-evocations",
   "title": "Automated Evocations - Companion Manager",
   "description": "A user interface to manage companions with summoning animations and automated summoning for spells",
   "version": "0.1",
-  "author": "theripper93",
   "authors": [
-      {
-          "name": "theripper93",
-          "email": "tsplab@gmail.com",
-          "url": "https://www.patreon.com/theripper93"
-      }
+    {
+      "name": "theripper93",
+      "email": "tsplab@gmail.com",
+      "url": "https://www.patreon.com/theripper93"
+    }
   ],
   "languages": [
-      {
-          "lang": "en",
-          "name": "English",
-          "path": "languages/en.json"
-      },    
-      {
-          "lang": "de",
-          "name": "Deutsch (German)",
-          "path": "languages/de.json"
-      },
-      {
-          "lang": "fr",
-          "name": "Français (French)",
-          "path": "languages/fr.json"
-      },
-      {
-        "lang": "ja",
-        "name": "日本語",
-        "path": "languages/ja.json"
-        }
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch (German)",
+      "path": "languages/de.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Français (French)",
+      "path": "languages/fr.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "languages/ja.json"
+    }
   ],
   "scripts": [
-      "./scripts/main.js",
-      "./scripts/config.js",
-      "./scripts/companionmanager.js",
-      "./scripts/autoevocations/dnd5e.js",
-      "./scripts/autoevocations/pf2e.js",
-      "./scripts/autoevocations/automatedevocations.js"
+    "scripts/main.js",
+    "scripts/config.js",
+    "scripts/companionmanager.js",
+    "scripts/autoevocations/dnd5e.js",
+    "scripts/autoevocations/pf2e.js",
+    "scripts/autoevocations/automatedevocations.js"
   ],
   "styles": [
-      "./styles/comapnionmanager.css",
-      "./styles/spellconfig.css"
+    "styles/comapnionmanager.css",
+    "styles/spellconfig.css"
   ],
   "packs": [
     {
-        "name": "aemacros",
-        "label": "Automated Evocations Macros",
-        "path": "packs/macros.db",
-        "entity": "Macro",
-        "type": "Macro",
-        "module": "automated-evocations"
+      "name": "aemacros",
+      "label": "Automated Evocations Macros",
+      "path": "packs/macros.db",
+      "type": "Macro",
+      "private": false
     },
     {
-        "name": "aeactors",
-        "label": "Automated Evocations Summons",
-        "path": "packs/actors.db",
-        "entity": "Actor",
-        "type": "Actor",
-        "module": "automated-evocations"
+      "name": "aeactors",
+      "label": "Automated Evocations Summons",
+      "path": "packs/actors.db",
+      "type": "Actor",
+      "private": false
     }
-],
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "9",
+  ],
   "url": "https://github.com/theripper93/automated-evocations",
   "manifest": "https://github.com/theripper93/automated-evocations/releases/latest/download/module.json",
   "download": "https://github.com/theripper93/automated-evocations/releases/latest/download/module.zip",
-  "socket":true,
-  "dependencies": [
-    {
-        "name": "sequencer"
-    },
-    {
-        "name": "warpgate"
-    }
-  ]
+  "socket": true,
+  "id": "automated-evocations",
+  "relationships": {
+    "requires": [
+      {
+        "id": "sequencer",
+        "type": "module",
+        "compatibility": {}
+      },
+      {
+        "id": "warpgate",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  },
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10"
+  }
 }

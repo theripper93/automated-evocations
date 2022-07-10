@@ -21,17 +21,17 @@ class CompanionManager extends FormApplication {
     return {
       dnd5e: {
         getSummonInfo(args, spellLevel) {
-          const spellDC = (args[0].assignedActor?.data.data.attributes.spelldc) || 0;
+          const spellDC = (args[0].assignedActor?.system.attributes.spelldc) || 0;
           return {
             level: (args[0].spellLevel || spellLevel) - spellLevel,
-            maxHP: args[0].assignedActor?.data.data.attributes.hp.max || 1,
-            modifier: args[0].assignedActor?.data.data.abilities[args[0].assignedActor?.data.data.attributes.spellcasting]?.mod,
+            maxHP: args[0].assignedActor?.system.attributes.hp.max || 1,
+            modifier: args[0].assignedActor?.system.abilities[args[0].assignedActor?.system.attributes.spellcasting]?.mod,
             dc: spellDC,
             attack: {
-              ms: spellDC - 8 + args[0].assignedActor?.data.data.bonuses.msak.attack,
-              rs: spellDC - 8 + args[0].assignedActor?.data.data.bonuses.rsak.attack,
-              mw: args[0].assignedActor?.data.data.bonuses.mwak.attack,
-              rw: args[0].assignedActor?.data.data.bonuses.rwak.attack,
+              ms: spellDC - 8 + args[0].assignedActor?.system.bonuses.msak.attack,
+              rs: spellDC - 8 + args[0].assignedActor?.system.bonuses.rsak.attack,
+              mw: args[0].assignedActor?.system.bonuses.mwak.attack,
+              rw: args[0].assignedActor?.system.bonuses.rwak.attack,
             }
           }
         }
@@ -75,7 +75,7 @@ class CompanionManager extends FormApplication {
     });
   }
 
-  _onDrop(event) {
+  async _onDrop(event) {
     let data;
     try {
       data = JSON.parse(event.dataTransfer.getData("text/plain"));
@@ -91,9 +91,10 @@ class CompanionManager extends FormApplication {
       }
     }
     if (!data.type === "Actor") return;
+    const actor = await fromUuid(data.uuid)
     this.element
       .find("#companion-list")
-      .append(this.generateLi({ id: data.id }));
+      .append(this.generateLi({ id: actor.id }));
     this.saveData();
   }
 
@@ -125,7 +126,7 @@ class CompanionManager extends FormApplication {
     
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
-    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.data.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor});
+    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor});
 
     warpgate.spawnAt(
       { x: posData.x, y: posData.y },
@@ -189,10 +190,10 @@ class CompanionManager extends FormApplication {
     actor.id
   }" data-elid="${randomID()}" draggable="true">
 		<div class="summon-btn">
-			<img class="actor-image" src="${actor.data.img}" alt="">
+			<img class="actor-image" src="${actor.img}" alt="">
 			<div class="warpgate-btn" id="summon-companion" data-aid="${actor.id}"></div>
 		</div>
-    	<span class="actor-name">${actor.data.name}</span>
+    	<span class="actor-name">${actor.name}</span>
 		<div class="companion-number"><input type="number" min="1" max="99" class="fancy-input" step="1" id="companion-number-val" value="${
       data.number || 1
     }"></div>
