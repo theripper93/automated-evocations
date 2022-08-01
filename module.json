@@ -56,7 +56,8 @@
       "label": "Automated Evocations Summons",
       "path": "packs/actors.db",
       "type": "Actor",
-      "private": false
+      "private": false,
+      "system": "dnd5e"
     }
   ],
   "url": "https://github.com/theripper93/automated-evocations",
