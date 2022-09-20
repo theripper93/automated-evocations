@@ -109,12 +109,12 @@ class CompanionManager extends FormApplication {
       .find("#companion-number-val")
       .val();
     const tokenData = await actor.getTokenData({elevation: _token?.data?.elevation ?? 0});
-    const posData = await warpgate.crosshairs.show({
+    const posData = game.Levels3DPreview._active ? await this.pickCanvasPosition3D() : await warpgate.crosshairs.show({
       size: Math.max(tokenData.width,tokenData.height)*(tokenData.texture.scaleX + tokenData.texture.scaleY)/2,
       icon: "modules/automated-evocations/assets/black-hole-bolas.webp",
       label: "",
     });
-    if (posData.cancelled) {
+    if (!posData || posData.cancelled) {
       this.maximize();  
       return;
     }
@@ -126,10 +126,14 @@ class CompanionManager extends FormApplication {
     
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
-    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor});
-
+    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor}) || {};
+    customTokenData.elevation = posData.z ?? _token?.document?.elevation ?? 0 ;
+    tokenData.elevation = customTokenData.elevation;
+    Hooks.on("preCreateToken", (tokenDoc, td) => {
+      tokenDoc.updateSource({elevation: customTokenData.elevation});
+    });
     warpgate.spawnAt(
-      { x: posData.x, y: posData.y },
+      { x: posData.x, y: posData.y},
       tokenData,
       customTokenData || {},
       {},
@@ -241,6 +245,20 @@ class CompanionManager extends FormApplication {
   close(noSave = false) {
     if (!noSave) this.saveData();
     super.close();
+  }
+
+  async pickCanvasPosition3D() {
+    ui.notifications.notify(game.i18n.localize("AE.pick3d"));
+    const canvas = game.Levels3DPreview.renderer.domElement;
+
+    return new Promise((resolve, reject) => {
+      function onPick(event) {
+        canvas.removeEventListener("click", onPick);
+        if(event.which != 1) return reject();
+        resolve(game.Levels3DPreview.interactionManager.canvas2dMousePosition);
+      }
+      canvas.addEventListener("click", onPick);
+    })
   }
 }
 

@@ -1,5 +1,6 @@
 {
     "AE": {
+        "pick3d": "Click a point in the 3D Canvas to Summon.",
         "dialogs": {
             "companionManager":{
                 "title": "Companion Manager",
