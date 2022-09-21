@@ -109,7 +109,7 @@ class CompanionManager extends FormApplication {
       .find("#companion-number-val")
       .val();
     const tokenData = await actor.getTokenData({elevation: _token?.data?.elevation ?? 0});
-    const posData = game.Levels3DPreview._active ? await this.pickCanvasPosition3D() : await warpgate.crosshairs.show({
+    const posData = game?.Levels3DPreview?._active ? await this.pickCanvasPosition3D() : await warpgate.crosshairs.show({
       size: Math.max(tokenData.width,tokenData.height)*(tokenData.texture.scaleX + tokenData.texture.scaleY)/2,
       icon: "modules/automated-evocations/assets/black-hole-bolas.webp",
       label: "",
