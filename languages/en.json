@@ -1,5 +1,21 @@
 {
     "AE": {
+        "custombindings": {
+            "add" : "Add Binding",
+            "bindingstitle": "Edit Custom Bindings",
+            "bindingtitle": "Edit Binding",
+            "tt": {
+                "spellname": "Spell Name",
+                "edit": "Edit",
+                "delete": "Delete",
+                "creaturename": "Creature Name"
+            },
+            "sett": {
+                "label": "Configure Custom Bindings",
+                "name": "Custom Bindings",
+                "hint": "Configure Custom Spell Bindings"
+            }
+        },
         "pick3d": "Click a point in the 3D Canvas to Summon.",
         "dialogs": {
             "companionManager":{

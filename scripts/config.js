@@ -23,6 +23,17 @@ Hooks.once("init", async function () {
     type: Object,
     default: {},
   });
+
+  game.settings.registerMenu(AECONSTS.MN, "configBindings", {
+    name: game.i18n.localize("AE.custombindings.sett.name"),
+    label: game.i18n.localize("AE.custombindings.sett.label"),
+    hint: game.i18n.localize("AE.custombindings.sett.hint"),
+    icon: "fas fa-cogs",
+    scope: "world",
+    restricted: true,
+    type: AutomatedEvocationsCustomBindings,
+  });
+
   game.settings.register(AECONSTS.MN, "autoclose", {
     name: game.i18n.localize(`AE.settings.autoclose.title`),
     hint: game.i18n.localize(`AE.settings.autoclose.hint`),

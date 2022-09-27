@@ -1,0 +1,19 @@
+<div>
+    <ul class="custom-auto-spells-list">
+        <li class="add-binding"><i>{{localize "AE.custombindings.add"}} <i class="fas fa-plus"></i></i></li>
+        {{#each binding}}
+            <li style="gap:0.5rem; padding-bottom:0.5rem;" data-index="{{@index}}">
+                <input type="text" name="" id="creature-name" value="{{creature}}" data-tooltip="{{localize "AE.custombindings.tt.creaturename"}}">
+                <input style="width:25px;" type="number" name="" id="creature-number" value="{{number}}">
+                <select name="" id="">
+                {{#each ../animations}}
+                    <optgroup label="{{@key}}">
+                        {{selectOptions this selected=../animation}}
+                    </optgroup>
+                {{/each}}
+                </select>
+                <i class="fas fa-trash" data-tooltip="{{localize "AE.custombindings.tt.delete"}}"></i>
+            </li>
+        {{/each}}
+    </ul>
+</div>

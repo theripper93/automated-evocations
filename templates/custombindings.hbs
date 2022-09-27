@@ -1,0 +1,9 @@
+<div>
+    <ul class="custom-auto-spells-list">
+        <li class="add-binding"><i>{{localize "AE.custombindings.add"}} <i class="fas fa-plus"></i></i></li>
+        <hr>
+        {{#each customautospells}}
+            <li data-binding="{{@key}}"><input data-tooltip="{{localize "AE.custombindings.tt.spellname"}}" type="text" id="" value="{{@key}}"> <div class="custom-auto-spells-btns"><i data-tooltip="{{localize "AE.custombindings.tt.edit"}}" class="fas fa-edit"></i> <i data-tooltip="{{localize "AE.custombindings.tt.delete"}}" class="fas fa-trash"></i></div></li>
+        {{/each}}
+    </ul>
+</div>

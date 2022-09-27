@@ -37,7 +37,8 @@
     "scripts/companionmanager.js",
     "scripts/autoevocations/dnd5e.js",
     "scripts/autoevocations/pf2e.js",
-    "scripts/autoevocations/automatedevocations.js"
+    "scripts/autoevocations/automatedevocations.js",
+    "scripts/custombindings.js"
   ],
   "styles": [
     "styles/comapnionmanager.css",
