@@ -14,6 +14,10 @@ Hooks.once("init", async function () {
     config: false,
     type: Object,
     default: {},
+    onChange: (obj) => {
+      game.automatedevocations[game.system.id] = deepClone(game.automatedevocations.originalBindings);
+      game.automatedevocations[game.system.id] = mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
+    },
   });
   game.settings.register(AECONSTS.MN, "customanimations", {
     name: "",
@@ -24,6 +28,8 @@ Hooks.once("init", async function () {
     default: {},
   });
 
+  if(game.system.id === "dnd5e") {
+
   game.settings.registerMenu(AECONSTS.MN, "configBindings", {
     name: game.i18n.localize("AE.custombindings.sett.name"),
     label: game.i18n.localize("AE.custombindings.sett.label"),
@@ -33,6 +39,8 @@ Hooks.once("init", async function () {
     restricted: true,
     type: AutomatedEvocationsCustomBindings,
   });
+
+  };
 
   game.settings.register(AECONSTS.MN, "autoclose", {
     name: game.i18n.localize(`AE.settings.autoclose.title`),

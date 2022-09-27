@@ -1,7 +1,7 @@
 Hooks.on("createChatMessage", async (chatMessage) => {
   try{
     if(game.system.id != "dnd5e")return;
-    if (chatMessage.author.id !== game.user.id || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
+    if (!chatMessage.isAuthor || !game.settings.get(AECONSTS.MN, "enableautomations")) return;
   
     const messageContent = $(chatMessage.content);
     if(!messageContent.length)return;
