@@ -110,7 +110,7 @@ class CompanionManager extends FormApplication {
       .val();
     const tokenData = await actor.getTokenData({elevation: _token?.data?.elevation ?? 0});
     const posData = game?.Levels3DPreview?._active ? await this.pickCanvasPosition3D() : await warpgate.crosshairs.show({
-      size: Math.max(tokenData.width,tokenData.height)*(tokenData.texture.scaleX + tokenData.texture.scaleY)/2,
+      size: Math.max(Math.max(tokenData.width,tokenData.height)*(tokenData.texture.scaleX + tokenData.texture.scaleY)/2, 0.5),
       icon: "modules/automated-evocations/assets/black-hole-bolas.webp",
       label: "",
     });
@@ -130,6 +130,8 @@ class CompanionManager extends FormApplication {
     customTokenData.elevation = posData.z ?? _token?.document?.elevation ?? 0 ;
     tokenData.elevation = customTokenData.elevation;
     Hooks.on("preCreateToken", (tokenDoc, td) => {
+      td ??= {};
+      td.elevation = customTokenData.elevation;
       tokenDoc.updateSource({elevation: customTokenData.elevation});
     });
     warpgate.spawnAt(
