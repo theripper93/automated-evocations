@@ -107,13 +107,7 @@ class AutomatedEvocationsCustomBindingsConfig extends FormApplication {
         this.render(true);
     });
     html.on("change submit", "input", async (event) => {
-        const binding = game.settings.get(AECONSTS.MN, "customautospells")[this._binding];
-        const index = event.currentTarget.closest("li").dataset.index;
-        binding[index].creature = event.currentTarget.value;
-        const newBindings = game.settings.get(AECONSTS.MN, "customautospells");
-        newBindings[this._binding] = binding;
-        await game.settings.set(AECONSTS.MN, "customautospells", newBindings);
-        this.render(true);
+      this.saveData(true);
     });
   }
 
@@ -123,7 +117,7 @@ class AutomatedEvocationsCustomBindingsConfig extends FormApplication {
       if(li.className === "add-binding") continue;
       const creature = li.querySelector("input[type=text]").value;
       const animation = li.querySelector("select").value;
-      const number = li.querySelector("input[type=number]").value;
+      const number = parseInt(li.querySelector("input[type=number]").value);
       newBinding.push({creature, number, animation});
     }
     const newBindings = game.settings.get(AECONSTS.MN, "customautospells");
