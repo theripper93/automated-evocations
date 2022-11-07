@@ -106,7 +106,7 @@ class AutomatedEvocationsCustomBindingsConfig extends FormApplication {
         await game.settings.set(AECONSTS.MN, "customautospells", newBindings);
         this.render(true);
     });
-    html.on("change submit", "input", async (event) => {
+    html.on("change submit", "input, select", async (event) => {
       this.saveData(true);
     });
   }
