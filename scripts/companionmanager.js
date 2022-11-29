@@ -126,7 +126,7 @@ class CompanionManager extends FormApplication {
     
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
-    const customTokenData = await game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.execute({summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor}) || {};
+    const customTokenData = await this.evaluateExpression(game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.command, {summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor}) || {};
     customTokenData.elevation = posData.z ?? _token?.document?.elevation ?? 0 ;
     tokenData.elevation = customTokenData.elevation;
     Hooks.on("preCreateToken", (tokenDoc, td) => {
@@ -152,6 +152,19 @@ class CompanionManager extends FormApplication {
     })
     if(game.settings.get(AECONSTS.MN, "autoclose")) this.close();
     else this.maximize();  
+  }
+
+  async evaluateExpression(expression, ...args) {
+    if (!expression) return null;
+    const AsyncFunction = (async function () {}).constructor;
+    const fn = new AsyncFunction("args" ,$("<span />", { html: expression }).text());
+    try {
+      return await fn(args);
+    } catch(e) {
+      ui.notifications.error("There was an error in your macro syntax. See the console (F12) for details");
+        console.error(e);
+      return undefined;
+    }
   }
 
   async _onRemoveCompanion(event) {
