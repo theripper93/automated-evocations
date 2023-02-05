@@ -118,8 +118,9 @@ class CompanionManager extends FormApplication {
       this.maximize();  
       return;
     }
-    if(typeof AECONSTS.animationFunctions[animation].fn == "string"){
-      game.macros.getName(AECONSTS.animationFunctions[animation].fn).execute(posData,tokenData);
+    if (typeof AECONSTS.animationFunctions[animation].fn == "string") {
+      this.evaluateExpression(game.macros.getName(AECONSTS.animationFunctions[animation].fn).command, posData, tokenData);
+      
     }else{
       AECONSTS.animationFunctions[animation].fn(posData, tokenData);
     }
