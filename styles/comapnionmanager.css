@@ -11,7 +11,7 @@
     padding: 0px;
 }
 
-#companion-list{
+#companionManager #companion-list{
     width: -webkit-fill-available;
     margin: 0;
     padding: 0;
@@ -19,18 +19,18 @@
     z-index: 1;
 }
 
-.actor-image{
+#companionManager .actor-image{
     width: 50px;
     height: 50px;
     border: none;
     transition: opacity 0.2s ease-in-out;
 }
 
-.actor-image:hover{
+#companionManager .actor-image:hover{
     opacity: 0.3;
 }
 
-.companion-item{
+#companionManager .companion-item{
     display: flex;
     align-items: center;
     width: -webkit-fill-available;
@@ -39,11 +39,11 @@
     padding: 8px;
 }
 
-.companion-item:hover{
+#companionManager .companion-item:hover{
     background: rgba(0, 0, 0, 0.3);
 }
 
-.summon-btn{
+#companionManager .summon-btn{
     min-width: 50px;
     min-height: 50px;
     width: 50px;
@@ -52,7 +52,7 @@
     align-items: center;
 }
 
-.warpgate-btn{
+#companionManager .warpgate-btn{
     /*-moz-mask-image: url(../assets/black-hole-bolas.svg);
     -webkit-mask-image: url(../assets/black-hole-bolas.svg);
     mask-image: url(../assets/black-hole-bolas.svg);
@@ -68,19 +68,19 @@
     border: none;
 }
 
-.warpgate-btn:hover{
+#companionManager .warpgate-btn:hover{
     cursor: pointer;
     opacity: 1;
 }
 
-.anim-dropdown{
+#companionManager .anim-dropdown{
     width: 100px;
     min-width: 100px;
     margin-left:10px;
     margin-right: 10px;
 }
 
-.companion-number{
+#companionManager .companion-number{
     width: 25px;
     min-width: 25px;
     text-align: center;
@@ -88,21 +88,21 @@
     margin-right: -13px;
 }
 
-#companion-list input{
+#companionManager #companion-list input{
     border-right: 0;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     height: 27px;
 }
 
-#companion-list select{
+#companionManager #companion-list select{
     border-left: 0;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     height: 27px;
 }
 
-.actor-name{
+#companionManager .actor-name{
     margin-left: 1em;
     margin-right: 1em;
     min-width: 70px;
@@ -110,17 +110,17 @@
     overflow: hidden;
 }
 
-.actor-name:hover{
+#companionManager .actor-name:hover{
     cursor: pointer;
     text-shadow: rgba(255, 0, 0, 0.75) 0 0 5px;
 }
 
-#remove-companion:hover{
+#companionManager #remove-companion:hover{
     cursor: pointer;
     text-shadow: rgba(255, 0, 0, 0.75) 0 0 5px;
 }
 
-.searchbox{
+#companionManager .searchbox{
     width: 100%;
     padding: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
