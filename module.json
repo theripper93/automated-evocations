@@ -81,10 +81,7 @@
     ]
   },
   "compatibility": {
-    "minimum": "10",
-    "verified": "10"
-  },
-
-  "name": "automated-evocations",
-  "minimumCoreVersion": "10"
+    "minimum": "11",
+    "verified": "11"
+  }
 }
