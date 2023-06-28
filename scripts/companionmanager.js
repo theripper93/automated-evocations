@@ -75,6 +75,14 @@ class CompanionManager extends FormApplication {
     });
   }
 
+  _canDragDrop() {
+    return true;
+  }
+
+  _canDragStart() {
+    return true;
+  }
+
   async _onDrop(event) {
     let data;
     try {
@@ -91,10 +99,10 @@ class CompanionManager extends FormApplication {
       }
     }
     if (!data.type === "Actor") return;
-    const actor = await fromUuid(data.uuid)
+    //const actor = await fromUuid(data.uuid)
     this.element
       .find("#companion-list")
-      .append(this.generateLi({ id: actor.id }));
+      .append(await this.generateLi({ id: data.uuid }));
     this.saveData();
   }
 
@@ -104,7 +112,7 @@ class CompanionManager extends FormApplication {
       .find(".anim-dropdown")
       .val();
     const aId = event.currentTarget.dataset.aid;
-    const actor = game.actors.get(aId);
+    const actor = game.actors.get(aId) || await fromUuid(aId);
     const duplicates = $(event.currentTarget.parentElement.parentElement)
       .find("#companion-number-val")
       .val();
@@ -131,18 +139,27 @@ class CompanionManager extends FormApplication {
     customTokenData.elevation = posData?.flags?.levels?.elevation ?? _token?.document?.elevation ?? 0;
     customTokenData.elevation = parseFloat(customTokenData.elevation);
     tokenData.elevation = customTokenData.elevation;
+    if (!tokenData.actor) {
+      tokenData.updateSource({actorId: Array.from(game.actors).find(a => !a.prototypeToken?.actorLink).id})
+    }
     Hooks.on("preCreateToken", (tokenDoc, td) => {
       td ??= {};
       td.elevation = customTokenData.elevation;
       tokenDoc.updateSource({elevation: customTokenData.elevation});
     });
-    warpgate.spawnAt(
+    const tokens = await warpgate.spawnAt(
       { x: posData.x, y: posData.y},
       tokenData,
       customTokenData || {},
       {},
       { duplicates }
     );
+    if (tokens.length) {
+      for (const t of tokens) {
+        const tokenDocument = canvas.tokens.get(t).document;
+        await tokenDocument.update({delta: actor.toObject()});
+      }
+    }
     console.log("Automated Evocations Summoning:", {
       assignedActor: this.caster || game?.user?.character || _token?.actor,
       spellLevel: this.spellLevel || 0,
@@ -186,7 +203,7 @@ class CompanionManager extends FormApplication {
 
   async _onOpenSheet(event) {
     const actorId = event.currentTarget.parentElement.dataset.aid;
-    const actor = game.actors.get(actorId);
+    const actor = game.actors.get(actorId) || await fromUuid(actorId);
     if (actor) {
       actor.sheet.render(true);
     }
@@ -196,23 +213,24 @@ class CompanionManager extends FormApplication {
     let data = this.actor && (this.actor.getFlag(AECONSTS.MN,"isLocal") || game.settings.get(AECONSTS.MN, "storeonactor")) ? this.actor.getFlag(AECONSTS.MN,"companions") || [] : game.user.getFlag(AECONSTS.MN, "companions");
     if (data) {
       for (let companion of data) {
-        this.element.find("#companion-list").append(this.generateLi(companion));
+        this.element.find("#companion-list").append(await this.generateLi(companion));
       }
     }
   }
 
-  generateLi(data) {
-    const actor = game.actors.get(data.id) || game.actors.getName(data.id);
+  async generateLi(data) {
+    const actor = game.actors.get(data.id) || game.actors.getName(data.id) || await fromUuid(data.id);
     if (!actor) return "";
+    const uuid = actor.uuid;
     const restricted = game.settings.get(AECONSTS.MN, "restrictOwned")
     if(restricted && !actor.isOwner) return "";
     let $li = $(`
 	<li id="companion" class="companion-item" data-aid="${
-    actor.id
+    uuid
   }" data-elid="${randomID()}" draggable="true">
 		<div class="summon-btn">
 			<img class="actor-image" src="${actor.img}" alt="">
-			<div class="warpgate-btn" id="summon-companion" data-aid="${actor.id}"></div>
+			<div class="warpgate-btn" id="summon-companion" data-aid="${uuid}"></div>
 		</div>
     	<span class="actor-name">${actor.name}</span>
 		<div class="companion-number"><input type="number" min="1" max="99" class="fancy-input" step="1" id="companion-number-val" value="${
@@ -276,7 +294,7 @@ class SimpleCompanionManager extends CompanionManager {
 
   async activateListeners(html) {
     for (let summon of this.summons) {
-      this.element.find("#companion-list").append(this.generateLi(summon));
+      this.element.find("#companion-list").append(await this.generateLi(summon));
     }
 
     html.on("click", "#summon-companion", this._onSummonCompanion.bind(this));
