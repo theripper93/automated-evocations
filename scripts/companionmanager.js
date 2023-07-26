@@ -139,7 +139,9 @@ class CompanionManager extends FormApplication {
     customTokenData.elevation = posData?.flags?.levels?.elevation ?? _token?.document?.elevation ?? 0;
     customTokenData.elevation = parseFloat(customTokenData.elevation);
     tokenData.elevation = customTokenData.elevation;
+    let isCompendiumActor = false;
     if (!tokenData.actor) {
+      isCompendiumActor = true;
       tokenData.updateSource({actorId: Array.from(game.actors).find(a => !a.prototypeToken?.actorLink).id})
     }
     Hooks.on("preCreateToken", (tokenDoc, td) => {
@@ -154,7 +156,7 @@ class CompanionManager extends FormApplication {
       {},
       { duplicates }
     );
-    if (tokens.length) {
+    if (tokens.length && isCompendiumActor) {
       for (const t of tokens) {
         const tokenDocument = canvas.tokens.get(t).document;
         await tokenDocument.update({delta: actor.toObject()});
