@@ -1,11 +1,28 @@
 {
     "AE": {
+        "custombindings": {
+            "add": "Neue Bindung",
+            "bindingstitle": "Eigene Bindungen bearbeiten",
+            "bindingtitle": "Bindung bearbeiten",
+            "tt": {
+                "spellname": "Zaubername",
+                "edit": "Bearbeiten",
+                "delete": "Löschen",
+                "creaturename": "Kreaturenname"
+            },
+            "sett": {
+                "label": "Eigene Bindungen bearbeiten",
+                "name": "Eigene Bindungen",
+                "hint": "Eigene Zauberbindungen bearbeiten"
+            }
+        },
+        "pick3d": "Punkt auf der 3D-Spielfläche zum Beschwören anklicken.",
         "dialogs": {
-            "companionManager":{
-                "title": "Begleiter Verwalter",
+            "companionManager": {
+                "title": "Begleiter-Verwaltung",
                 "confirm": {
-                    "title": "Lösche Begleiter Companion",
-                    "content": "<p>Bist du dir sicher, dass du diesen Begleiter entfernen möchtest?</p>"
+                    "title": "Begleiter löschen",
+                    "content": "<p>Sicher, dass dieser Begleiter gelöscht werden soll?</p>"
                 }
             }
         },
@@ -25,31 +42,30 @@
             "ice1": "Eis",
             "magic2": "Beschwörung",
             "lightning2": "Sturm"
-
         },
-        "groups":{
+        "groups": {
             "elemental": "Elementar",
             "magical": "Magisch",
             "z-none": "Andere"
         },
-        "settings":{
-            "storeonactor":{
+        "settings": {
+            "storeonactor": {
                 "title": "Speichere Begleiter auf Akteur",
-                "hint": "Speichert die Begleiter standardtmäßig auf dem Akteur anstatt auf dem Benutzer."
+                "hint": "Speichert die Begleiter standardmäßig auf dem Akteur anstatt pro Benutzer."
             },
-            "enableautomations":{
+            "enableautomations": {
                 "title": "Aktiviere Automatisierungen",
-                "hint": "Aktiviere das Begleiter Automatisierungssystem beim Wirken von Zaubern."
+                "hint": "Aktiviere das Begleiter-Automatisierungssystem beim Wirken von Zaubern."
             },
             "autoclose": {
                 "title": "Automatisches Schließen",
                 "hint": "Schließe automatisch das Begleiterfenster nach der Beschwörung."
             },
-            "hidebutton":{
-                "title": "Verstecke Begleiter Schaltfläche",
-                "hint": "Verstecke die Begleiter Schaltfläche auf Charakterbögen."
+            "hidebutton": {
+                "title": "Verstecke Begleiter-Schaltfläche",
+                "hint": "Verstecke die Begleiter-Schaltfläche auf Charakterbögen."
             },
-            "restrictOwned":{
+            "restrictOwned": {
                 "title": "Nur Akteure in Besitz",
                 "hint": "Schränke die Begleiterliste auf Akteure ein, bei denen der Benutzer der Besitzer ist."
             }
