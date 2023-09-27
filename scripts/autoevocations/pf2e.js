@@ -120,5 +120,6 @@ if(data.spellLevel >= 4) arrayendpoint = 8;
      },
     };
     }
-    game.automatedevocations[game.system.id] = mergeObject(game.automatedevocations[game.system.id],game.settings.get(AECONSTS.MN, "customautospells"))
+    game.automatedevocations[game.system.id] = mergeObject(game.automatedevocations[game.system.id], game.settings.get(AECONSTS.MN, "customautospells"));
+    Hooks.callAll("automated-evocations.pf2e.ready");
   });

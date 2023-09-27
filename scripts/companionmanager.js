@@ -149,6 +149,7 @@ class CompanionManager extends FormApplication {
       td.elevation = customTokenData.elevation;
       tokenDoc.updateSource({elevation: customTokenData.elevation});
     });
+    Hooks.callAll("automated-evocations.preCreateToken", { tokenData: tokenData, customTokenData: customTokenData, posData: posData, actor: actor, spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor });
     const tokens = await warpgate.spawnAt(
       { x: posData.x, y: posData.y},
       tokenData,
@@ -162,7 +163,7 @@ class CompanionManager extends FormApplication {
         await tokenDocument.update({delta: actor.toObject()});
       }
     }
-    console.log("Automated Evocations Summoning:", {
+    const postSummon = {
       assignedActor: this.caster || game?.user?.character || _token?.actor,
       spellLevel: this.spellLevel || 0,
       duplicates: duplicates,
@@ -170,7 +171,9 @@ class CompanionManager extends FormApplication {
       summon: actor,
       tokenData: tokenData,
       posData: posData,
-    })
+    };
+    console.log("Automated Evocations Summoning:", postSummon);
+    Hooks.callAll("automated-evocations.postSummon", postSummon);
     if(game.settings.get(AECONSTS.MN, "autoclose")) this.close();
     else this.maximize();  
   }
@@ -276,7 +279,8 @@ class CompanionManager extends FormApplication {
         number: $(companion).find("#companion-number-val").val(),
       });
     }
-    this.actor && (this.actor.getFlag(AECONSTS.MN,"isLocal") || game.settings.get(AECONSTS.MN, "storeonactor")) ? this.actor.setFlag(AECONSTS.MN,"companions", data) : game.user.setFlag(AECONSTS.MN, "companions", data);
+    this.actor && (this.actor.getFlag(AECONSTS.MN, "isLocal") || game.settings.get(AECONSTS.MN, "storeonactor")) ? this.actor.setFlag(AECONSTS.MN, "companions", data) : game.user.setFlag(AECONSTS.MN, "companions", data);
+    Hooks.callAll("automated-evocations.saveCompanionData", { actor: this.actor, data: data });
   }
 
   close(noSave = false) {
