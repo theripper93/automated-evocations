@@ -3,7 +3,8 @@ Hooks.once("ready", async function () {
       game.automatedevocations = {};
       game.automatedevocations[game.system.id] = {};
     }
-   if(game.system.id == "pf2e"){
+   const lang = await game.settings.get("core", "language");
+   if(game.system.id == "pf2e" && lang === "en"){
     game.automatedevocations.pf2e = {
       "Forceful Hand":[
         {

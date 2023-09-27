@@ -3,7 +3,8 @@ Hooks.once("ready", async function () {
         game.automatedevocations = {};
         game.automatedevocations[game.system.id] = {};
     }
-    if (game.system.id == "dnd5e") {
+    const lang = await game.settings.get("core", "language");
+    if (game.system.id == "dnd5e" && lang === "en") {
         game.automatedevocations.dnd5e = {
             "Arcane Hand": [
                 {
