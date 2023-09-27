@@ -86,7 +86,7 @@ Hooks.once("ready", async function () {
                 if (data.level >= 5) multiplier = 2;
                 if (data.level >= 7) multiplier = 3;
                 let beasts = game.actors
-                    .filter((a) => a.type === "npc" && a.system.details.type?.value == "beast" && a.system.details.cr <= 2)
+                    .filter((a) => a.type === "npc" && !a.prototypeToken.actorLink && a.system.details.type?.value == "beast" && a.system.details.cr <= 2)
                     .sort((a, b) => {
                         return a.system.details.cr < b.system.details.cr ? 1 : -1;
                     });
@@ -107,7 +107,7 @@ Hooks.once("ready", async function () {
             },
             "Conjure Celestial": (data) => {
                 let celestials = game.actors
-                    .filter((a) => a.type === "npc" && a.system.details.type?.value == "celestial" && a.system.details.cr <= 4)
+                    .filter((a) => a.type === "npc" && !a.prototypeToken.actorLink && a.system.details.type?.value == "celestial" && a.system.details.cr <= 4)
                     .sort((a, b) => {
                         return a.system.details.cr < b.system.details.cr ? 1 : -1;
                     });
@@ -122,7 +122,7 @@ Hooks.once("ready", async function () {
             },
             "Conjure Elemental": (data) => {
                 let elementals = game.actors
-                    .filter((a) => a.type === "npc" && a.system.details.type?.value == "elemental" && a.system.details.cr <= data.level)
+                    .filter((a) => a.type === "npc" && !a.prototypeToken.actorLink && a.system.details.type?.value == "elemental" && a.system.details.cr <= data.level)
                     .sort((a, b) => {
                         return a.system.details.cr < b.system.details.cr ? 1 : -1;
                     });
@@ -137,7 +137,7 @@ Hooks.once("ready", async function () {
             },
             "Conjure Fey": (data) => {
                 let feys = game.actors
-                    .filter((a) => a.type === "npc" && a.system.details.type?.value == "fey" && a.system.details.cr <= data.level)
+                    .filter((a) => a.type === "npc" && !a.prototypeToken.actorLink && a.system.details.type?.value == "fey" && a.system.details.cr <= data.level)
                     .sort((a, b) => {
                         return a.system.details.cr < b.system.details.cr ? 1 : -1;
                     });
@@ -155,7 +155,7 @@ Hooks.once("ready", async function () {
                 if (data.level >= 6) multiplier = 2;
                 if (data.level >= 8) multiplier = 3;
                 let elementals = game.actors
-                    .filter((a) => a.type === "npc" && a.system.details.type?.value == "elemental" && a.system.details.cr <= 2)
+                    .filter((a) => a.type === "npc" && !a.prototypeToken.actorLink && a.system.details.type?.value == "elemental" && a.system.details.cr <= 2)
                     .sort((a, b) => {
                         return a.system.details.cr < b.system.details.cr ? 1 : -1;
                     });
@@ -180,7 +180,7 @@ Hooks.once("ready", async function () {
                 if (data.level >= 6) multiplier = 2;
                 if (data.level >= 8) multiplier = 3;
                 let feys = game.actors
-                    .filter((a) => a.type === "npc" && a.system.details.type?.value == "fey" && a.system.details.cr <= data.level)
+                    .filter((a) => a.type === "npc" && !a.prototypeToken.actorLink && a.system.details.type?.value == "fey" && a.system.details.cr <= data.level)
                     .sort((a, b) => {
                         return a.system.details.cr < b.system.details.cr ? 1 : -1;
                     });
