@@ -26,6 +26,10 @@
                 }
             }
         },
+        "errors": {
+            "summonActorMissing": "Der Akteur dieses Begleiters existiert nicht mehr.",
+            "summonCompendiumPlaceholderMissing": "Beschwörung von Akteuren aus Kompendien benötigen einen unverknüpften Akteur als Platzhalter in der Welt. Bitte unverknüpften Akteur anlegen."
+        },
         "actorSheetBtn": "Begleiter",
         "animations": {
             "fire": "Feuer",
