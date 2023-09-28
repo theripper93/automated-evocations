@@ -136,6 +136,13 @@ class CompanionManager extends FormApplication {
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
     const customTokenData = await this.evaluateExpression(game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.command, {summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor}) || {};
+    if (!customTokenData.actor) {
+      customTokenData.actor = {};
+    }
+    if (!customTokenData.actor.flags) {
+      customTokenData.actor.flags = {};
+    }
+    customTokenData.actor.flags["automated-evocations"] = { "summonerID": (this.caster || game?.user?.character || _token?.actor)?.id || "", "spellLevel": this.spellLevel || 0 };
     customTokenData.elevation = posData?.flags?.levels?.elevation ?? _token?.document?.elevation ?? 0;
     customTokenData.elevation = parseFloat(customTokenData.elevation);
     tokenData.elevation = customTokenData.elevation;
