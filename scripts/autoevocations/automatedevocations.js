@@ -24,10 +24,10 @@ Hooks.on("createChatMessage", async (chatMessage) => {
       for (let creature of creatures) {
         if (creature.level && spellLevel && creature.level >= spellLevel)
           continue;
-        let actor = game.actors.getName(creature.creature);
+        let actor = creature.creature.startsWith("Compendium.") ?  await fromUuid(creature.creature) : game.actors.getName(creature.creature);
         if (actor) {
           summonData.push({
-            id: actor.id,
+            id: creature.creature.startsWith("Compendium.") ? creature.creature : actor.id,
             number: creature.number,
             animation: creature.animation,
           });
@@ -54,10 +54,10 @@ Hooks.on("createChatMessage", async (chatMessage) => {
     for (let creature of creatures) {
       if (creature.level && spellLevel && creature.level >= spellLevel)
         continue;
-      let actor = game.actors.getName(creature.creature);
+      let actor = creature.creature.startsWith("Compendium.") ?  await fromUuid(creature.creature) : game.actors.getName(creature.creature);
       if (actor) {
         summonData.push({
-          id: actor.id,
+          id: creature.creature.startsWith("Compendium.") ? creature.creature : actor.id,
           number: creature.number,
           animation: creature.animation,
         });
