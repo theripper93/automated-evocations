@@ -113,6 +113,11 @@ class CompanionManager extends FormApplication {
       .val();
     const aId = event.currentTarget.dataset.aid;
     const actor = game.actors.get(aId) || await fromUuid(aId);
+    if (!actor) {
+      ui.notifications.info(game.i18n.localize("AE.errors.summonActorMissing"));
+      this.maximize();  
+      return;
+    }
     const duplicates = $(event.currentTarget.parentElement.parentElement)
       .find("#companion-number-val")
       .val();
@@ -142,7 +147,13 @@ class CompanionManager extends FormApplication {
     let isCompendiumActor = false;
     if (!tokenData.actor) {
       isCompendiumActor = true;
-      tokenData.updateSource({actorId: Array.from(game.actors).find(a => !a.prototypeToken?.actorLink).id})
+      const placeholder = game.actors.getName("Automated Evocations Placeholder") || Array.from(game.actors).find(a => !a.prototypeToken?.actorLink);
+      if (!placeholder) {
+        ui.notifications.info(game.i18n.localize("AE.errors.summonCompendiumPlaceholderMissing"));
+        this.maximize();  
+        return;
+      }
+      tokenData.updateSource({actorId: placeholder.id})
     }
     Hooks.on("preCreateToken", (tokenDoc, td) => {
       td ??= {};

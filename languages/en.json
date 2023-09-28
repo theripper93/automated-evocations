@@ -26,6 +26,10 @@
                 }
             }
         },
+        "errors": {
+            "summonActorMissing": "This companion refers to an actor that no longer exists.",
+            "summonCompendiumPlaceholderMissing": "Summoning compendium actors requires an unlinked placeholder actor in the world. Please create an unlinked actor."
+        },
         "actorSheetBtn": "Companions",
         "animations": {
             "fire": "Fire",
