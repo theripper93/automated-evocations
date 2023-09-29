@@ -44,7 +44,7 @@ class CompanionManager extends FormApplication {
   }
 
   async activateListeners(html) {
-    html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="Drag and Drop an actor to add it to the list."></div>`)
+    html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="${game.i18n.localize("AE.dialogs.companionManager.filterHint")}"></div>`)
     this.loadCompanions();
     html.on("input", ".searchinput", this._onSearch.bind(this));
     html.on("click", "#remove-companion", this._onRemoveCompanion.bind(this));
@@ -136,6 +136,22 @@ class CompanionManager extends FormApplication {
     await this.wait(AECONSTS.animationFunctions[animation].time);
     //get custom data macro
     const customTokenData = await this.evaluateExpression(game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.command, {summon: actor,spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor}) || {};
+    if (!customTokenData.actor) {
+      customTokenData.actor = {};
+    }
+    if (!customTokenData.actor.flags) {
+      customTokenData.actor.flags = {};
+    }
+    if (!customTokenData.token) {
+      customTokenData.token = {};
+    }
+    if (game.settings.get(AECONSTS.MN, "copyDisposition")) {
+      const summonerDisposition = (this.caster || game?.user?.character || _token?.actor)?.prototypeToken?.disposition;
+      if (typeof summonerDisposition !== "undefined") {
+        customTokenData.token.disposition = summonerDisposition;
+      }
+    }
+    customTokenData.actor.flags["automated-evocations"] = { "summonerID": (this.caster || game?.user?.character || _token?.actor)?.id || "", "spellLevel": this.spellLevel || 0 };
     customTokenData.elevation = posData?.flags?.levels?.elevation ?? _token?.document?.elevation ?? 0;
     customTokenData.elevation = parseFloat(customTokenData.elevation);
     tokenData.elevation = customTokenData.elevation;

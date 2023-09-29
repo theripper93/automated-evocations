@@ -23,7 +23,8 @@
                 "confirm": {
                     "title": "Delete Companion",
                     "content": "<p>Are you sure you want to delete this companion?</p>"
-                }
+                },
+                "filterHint": "Drag and Drop an actor to add it to the list."
             }
         },
         "actorSheetBtn": "Companions",
@@ -69,6 +70,10 @@
             "restrictOwned":{
                 "title": "Only Owned Actors",
                 "hint": "Restrict the companion list to only show owned companions actors."
+            },
+            "copyDisposition": {
+                "title": "Copy Disposition",
+                "hint": "Copies companion token disposition from summoning actor."
             }
         }
     }
