@@ -23,7 +23,8 @@
                 "confirm": {
                     "title": "Begleiter löschen",
                     "content": "<p>Sicher, dass dieser Begleiter gelöscht werden soll?</p>"
-                }
+                },
+                "filterHint": "Akteur in die Liste ziehen zum Hinzufügen."
             }
         },
         "actorSheetBtn": "Begleiter",

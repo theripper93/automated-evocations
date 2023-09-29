@@ -44,7 +44,7 @@ class CompanionManager extends FormApplication {
   }
 
   async activateListeners(html) {
-    html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="Drag and Drop an actor to add it to the list."></div>`)
+    html.find("#companion-list").before(`<div class="searchbox"><input type="text" class="searchinput" placeholder="${game.i18n.localize("AE.dialogs.companionManager.filterHint")}"></div>`)
     this.loadCompanions();
     html.on("input", ".searchinput", this._onSearch.bind(this));
     html.on("click", "#remove-companion", this._onRemoveCompanion.bind(this));

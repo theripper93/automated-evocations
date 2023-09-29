@@ -23,7 +23,8 @@
                 "confirm": {
                     "title": "Delete Companion",
                     "content": "<p>Are you sure you want to delete this companion?</p>"
-                }
+                },
+                "filterHint": "Drag and Drop an actor to add it to the list."
             }
         },
         "actorSheetBtn": "Companions",
