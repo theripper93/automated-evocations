@@ -68,6 +68,10 @@
             "restrictOwned": {
                 "title": "Nur Akteure in Besitz",
                 "hint": "Schränke die Begleiterliste auf Akteure ein, bei denen der Benutzer der Besitzer ist."
+            },
+            "copyDisposition": {
+                "title": "Gesinnung kopieren",
+                "hint": "Kopiert die Gesinnung der beschworenen Begleiter-Spielfiguren vom beschwörenden Akteur."
             }
         }
     }

@@ -142,6 +142,15 @@ class CompanionManager extends FormApplication {
     if (!customTokenData.actor.flags) {
       customTokenData.actor.flags = {};
     }
+    if (!customTokenData.token) {
+      customTokenData.token = {};
+    }
+    if (game.settings.get(AECONSTS.MN, "copyDisposition")) {
+      const summonerDisposition = (this.caster || game?.user?.character || _token?.actor)?.prototypeToken?.disposition;
+      if (typeof summonerDisposition !== "undefined") {
+        customTokenData.token.disposition = summonerDisposition;
+      }
+    }
     customTokenData.actor.flags["automated-evocations"] = { "summonerID": (this.caster || game?.user?.character || _token?.actor)?.id || "", "spellLevel": this.spellLevel || 0 };
     customTokenData.elevation = posData?.flags?.levels?.elevation ?? _token?.document?.elevation ?? 0;
     customTokenData.elevation = parseFloat(customTokenData.elevation);

@@ -69,6 +69,10 @@
             "restrictOwned":{
                 "title": "Only Owned Actors",
                 "hint": "Restrict the companion list to only show owned companions actors."
+            },
+            "copyDisposition": {
+                "title": "Copy Disposition",
+                "hint": "Copies companion token disposition from summoning actor."
             }
         }
     }

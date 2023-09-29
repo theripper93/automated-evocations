@@ -82,6 +82,14 @@ Hooks.once("init", async function () {
     type: Boolean,
     default: false,
   });
+  game.settings.register(AECONSTS.MN, "copyDisposition", {
+    name: game.i18n.localize(`AE.settings.copyDisposition.title`),
+    hint: game.i18n.localize(`AE.settings.copyDisposition.hint`),
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true,
+  });
 });
 
 Hooks.once("ready", async function () {
