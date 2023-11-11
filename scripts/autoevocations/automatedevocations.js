@@ -13,6 +13,7 @@ Hooks.on("createChatMessage", async (chatMessage) => {
     const actor = token?.actor ?? game.actors.get(actorId);
     if(!actor) return;
     const spellName = actor?.items?.get(itemId)?.name;
+    const spellItem = actor?.items?.get(itemId);
   
     let system = game.automatedevocations[game.system.id];
     if (!system) return;
@@ -33,7 +34,7 @@ Hooks.on("createChatMessage", async (chatMessage) => {
           });
         }
       }
-      new SimpleCompanionManager(summonData,spellLevel,canvas.tokens.get(chatMessage?.data?.speaker?.token)?.actor).render(true);
+      new SimpleCompanionManager(summonData,spellLevel,canvas.tokens.get(chatMessage?.speaker?.token)?.actor, spellItem?.system?.range?.value, spellItem?.img).render(true);
     }
   }catch(e){}
 });
