@@ -154,6 +154,7 @@ class CompanionManager extends FormApplication {
             summon: actor,
             tokenData: tokenData,
             posData: posData,
+            summonedTokens: tokens,
         };
         console.log("Automated Evocations Summoning:", postSummon);
         Hooks.callAll("automated-evocations.postSummon", postSummon);
