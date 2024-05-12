@@ -105,14 +105,23 @@ class CompanionManager extends FormApplication {
         const actor = game.actors.get(aId) || (await fromUuid(aId));
         const duplicates = $(event.currentTarget.parentElement.parentElement).find("#companion-number-val").val();
         const tokenData = await actor.getTokenData({ elevation: _token?.data?.elevation ?? 0 });
+
+        //get custom data macro
+        const customTokenData = (await this.evaluateExpression(game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.command, { summon: actor, spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor })) || {};
+
+        let isCompendiumActor = false;
+        if (!tokenData.actor) {
+            isCompendiumActor = true;
+            tokenData.updateSource({ actorId: Array.from(game.actors).find((a) => !a.prototypeToken?.actorLink).id });
+        }
+
         if (this.range) this.drawRange(this.range);
-        const posData = await warpgate.crosshairs.show({
-            size: Math.max((Math.max(tokenData.width, tokenData.height) * (tokenData.texture.scaleX + tokenData.texture.scaleY)) / 2, 0.5),
-            icon: "modules/automated-evocations/assets/black-hole-bolas.webp",
-            label: "",
-        });
+        const portal = new Portal();
+        portal.addCreature(actor, {count: duplicates, updateData: customTokenData});
+        portal.texture("modules/automated-evocations/assets/black-hole-bolas.webp");
+        const posData = await portal.pick();
         this.clearRange();
-        if (!posData || posData.cancelled) {
+        if (!posData) {
             this.maximize();
             return;
         }
@@ -123,23 +132,13 @@ class CompanionManager extends FormApplication {
         }
 
         await this.wait(AECONSTS.animationFunctions[animation].time);
-        //get custom data macro
-        const customTokenData = (await this.evaluateExpression(game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.command, { summon: actor, spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor })) || {};
-        customTokenData.elevation = posData?.flags?.levels?.elevation ?? _token?.document?.elevation ?? 0;
-        customTokenData.elevation = parseFloat(customTokenData.elevation);
-        tokenData.elevation = customTokenData.elevation;
-        let isCompendiumActor = false;
-        if (!tokenData.actor) {
-            isCompendiumActor = true;
-            tokenData.updateSource({ actorId: Array.from(game.actors).find((a) => !a.prototypeToken?.actorLink).id });
-        }
-        Hooks.on("preCreateToken", (tokenDoc, td) => {
-            td ??= {};
-            td.elevation = customTokenData.elevation;
-            tokenDoc.updateSource({ elevation: customTokenData.elevation });
-        });
+
         Hooks.callAll("automated-evocations.preCreateToken", { tokenData: tokenData, customTokenData: customTokenData, posData: posData, actor: actor, spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor });
-        const tokens = await warpgate.spawnAt({ x: posData.x, y: posData.y }, tokenData, customTokenData || {}, {}, { duplicates });
+        
+        const tokens = await portal.spawn();
+        
+        
+        
         if (tokens.length && isCompendiumActor) {
             for (const t of tokens) {
                 const tokenDocument = canvas.tokens.get(t).document;
@@ -151,6 +150,7 @@ class CompanionManager extends FormApplication {
             spellLevel: this.spellLevel || 0,
             duplicates: duplicates,
             warpgateData: customTokenData || {},
+            portalData: customTokenData || {},
             summon: actor,
             tokenData: tokenData,
             posData: posData,
@@ -187,10 +187,10 @@ class CompanionManager extends FormApplication {
         }
 
         rangeGraphics.position.set((canvas.scene.dimensions.size * token.document.width) / 2, (canvas.scene.dimensions.size * token.document.height) / 2);
-      rangeGraphics.zIndex = -100;
-      
-      //add as first child so that it is behind the token
-      token.addChildAt(rangeGraphics, 0);
+        rangeGraphics.zIndex = -100;
+
+        //add as first child so that it is behind the token
+        token.addChildAt(rangeGraphics, 0);
 
         this.rangeData.graphics = rangeGraphics;
     }
@@ -305,27 +305,27 @@ class CompanionManager extends FormApplication {
 }
 
 class SimpleCompanionManager extends CompanionManager {
-  constructor(summonData,spellLevel,actor, range, image) {
-    super();
-    this.caster = actor;
-    this.summons = summonData;
-    this.spellLevel = spellLevel
-    this.range = range;
-    this.image = image;
-  }
-
-  async activateListeners(html) {
-    for (let summon of this.summons) {
-      this.element.find("#companion-list").append(await this.generateLi(summon));
+    constructor(summonData, spellLevel, actor, range, image) {
+        super();
+        this.caster = actor;
+        this.summons = summonData;
+        this.spellLevel = spellLevel;
+        this.range = range;
+        this.image = image;
     }
 
-    html.on("click", "#summon-companion", this._onSummonCompanion.bind(this));
-    html.on("click", ".actor-name", this._onOpenSheet.bind(this));
-  }
+    async activateListeners(html) {
+        for (let summon of this.summons) {
+            this.element.find("#companion-list").append(await this.generateLi(summon));
+        }
 
-  _onDrop(event) {}
+        html.on("click", "#summon-companion", this._onSummonCompanion.bind(this));
+        html.on("click", ".actor-name", this._onOpenSheet.bind(this));
+    }
 
-  close() {
-    super.close(true);
-  }
+    _onDrop(event) {}
+
+    close() {
+        super.close(true);
+    }
 }

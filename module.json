@@ -74,7 +74,7 @@
         "compatibility": {}
       },
       {
-        "id": "warpgate",
+        "id": "portal-lib",
         "type": "module",
         "compatibility": {}
       }
