@@ -109,6 +109,11 @@ Hooks.once("ready", async function () {
     {}
   );
   //new CompanionManager().render(true)
+
+  if (game.user.isGM && !game.modules.get("portal-lib")?.active) {
+    ui.notifications.error("Portal is not enabled. Portal is required for Automated Evocations to work please install and enable it. The module has been migrated from the deprecated Warpgate Library.");
+  }
+
 });
 
 Hooks.on("getActorSheetHeaderButtons", (app, buttons) => {
