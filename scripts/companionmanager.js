@@ -104,7 +104,7 @@ class CompanionManager extends FormApplication {
         const aId = event.currentTarget.dataset.aid;
         const actor = game.actors.get(aId) || (await fromUuid(aId));
         const duplicates = $(event.currentTarget.parentElement.parentElement).find("#companion-number-val").val();
-        const tokenData = await actor.getTokenData({ elevation: _token?.data?.elevation ?? 0 });
+        const tokenData = await actor.getTokenDocument({ elevation: _token?.data?.elevation ?? 0 });
 
         //get custom data macro
         const customTokenData = (await this.evaluateExpression(game.macros.getName(`AE_Companion_Macro(${actor.name})`)?.command, { summon: actor, spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor })) || {};
@@ -117,7 +117,7 @@ class CompanionManager extends FormApplication {
 
         if (this.range) this.drawRange(this.range);
         const portal = new Portal();
-        portal.addCreature(actor, {count: duplicates, updateData: customTokenData});
+        portal.addCreature(actor, { count: duplicates, updateData: customTokenData });
         portal.texture("modules/automated-evocations/assets/black-hole-bolas.webp");
         const posData = await portal.pick();
         this.clearRange();
@@ -134,11 +134,9 @@ class CompanionManager extends FormApplication {
         await this.wait(AECONSTS.animationFunctions[animation].time);
 
         Hooks.callAll("automated-evocations.preCreateToken", { tokenData: tokenData, customTokenData: customTokenData, posData: posData, actor: actor, spellLevel: this.spellLevel || 0, duplicates: duplicates, assignedActor: this.caster || game.user.character || _token.actor });
-        
+
         const tokens = await portal.spawn();
-        
-        
-        
+
         if (tokens.length && isCompendiumActor) {
             for (const t of tokens) {
                 const tokenDocument = canvas.tokens.get(t).document;
@@ -252,7 +250,7 @@ class CompanionManager extends FormApplication {
         const restricted = game.settings.get(AECONSTS.MN, "restrictOwned");
         if (restricted && !actor.isOwner) return "";
         let $li = $(`
-	<li id="companion" class="companion-item" data-aid="${uuid}" data-elid="${randomID()}" draggable="true">
+	<li id="companion" class="companion-item" data-aid="${uuid}" data-elid="${foundry.utils.randomID()}" draggable="true">
 		<div class="summon-btn">
 			<img class="actor-image" src="${actor.img}" alt="">
 			<div class="warpgate-btn" id="summon-companion" data-aid="${uuid}"></div>

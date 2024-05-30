@@ -321,7 +321,7 @@ Hooks.once("ready", async function () {
             ],
         };
     }
-    game.automatedevocations.originalBindings = deepClone(game.automatedevocations[game.system.id]);
-    game.automatedevocations[game.system.id] = mergeObject(game.automatedevocations[game.system.id], game.settings.get(AECONSTS.MN, "customautospells"));
+    game.automatedevocations.originalBindings = foundry.utils.deepClone(game.automatedevocations[game.system.id]);
+    game.automatedevocations[game.system.id] = foundry.utils.mergeObject(game.automatedevocations[game.system.id], game.settings.get(AECONSTS.MN, "customautospells"));
     Hooks.callAll("automated-evocations.dnd5e.ready");
 });
