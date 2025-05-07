@@ -119,3 +119,16 @@ Hooks.on("getActorSheetHeaderButtons", (app, buttons) => {
         },
     });
 });
+
+Hooks.on("getHeaderControlsActorSheetV2", (app, buttons) => {
+    if (game.settings.get(AECONSTS.MN, "hidebutton")) return;
+    buttons.unshift({
+        icon: "fas fa-users",
+        action: "open-cm",
+        label: game.i18n.localize("AE.actorSheetBtn"),
+        onClick: function openCM(event) {
+            const actor = app.document;
+            new CompanionManager(actor).render(true);
+        },
+    });
+});

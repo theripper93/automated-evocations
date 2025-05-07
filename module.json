@@ -69,19 +69,21 @@
   "relationships": {
     "requires": [
       {
-        "id": "sequencer",
+        "id": "portal-lib",
         "type": "module",
         "compatibility": {}
-      },
+      }
+    ],
+    "recommends": [
       {
-        "id": "portal-lib",
+        "id": "sequencer",
         "type": "module",
         "compatibility": {}
       }
     ]
   },
   "compatibility": {
-    "minimum": "12",
-    "verified": "12"
+    "minimum": "13",
+    "verified": "13"
   }
 }
