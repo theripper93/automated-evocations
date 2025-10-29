@@ -1,21 +1,8 @@
-2025/05/07-22:56:06.885 9670 Recovering log #611
-2025/05/07-22:56:06.890 9670 Delete type=0 #611
-2025/05/07-22:56:06.890 9670 Delete type=3 #610
-2025/05/07-23:27:48.450 790c Level-0 table #615: started
-2025/05/07-23:27:48.450 790c Level-0 table #615: 0 bytes OK
-2025/05/07-23:27:48.452 790c Delete type=0 #613
-2025/05/07-23:27:48.452 790c Manual compaction at level-0 from '!macros!DFIqi3kVXrYZ8S7y' @ 72057594037927935 : 1 .. '!macros!z5CFHKH4XzXITTGU' @ 0 : 0; will stop at '!macros!z5CFHKH4XzXITTGU' @ 47 : 1
-2025/05/07-23:27:48.452 790c Compacting 1@0 + 0@1 files
-2025/05/07-23:27:48.453 790c Generated table #616@0: 8 keys, 4023 bytes
-2025/05/07-23:27:48.453 790c Compacted 1@0 + 0@1 files => 4023 bytes
-2025/05/07-23:27:48.454 790c compacted to: files[ 0 1 1 0 0 0 0 ]
-2025/05/07-23:27:48.454 790c Delete type=2 #608
-2025/05/07-23:27:48.454 790c Manual compaction at level-0 from '!macros!z5CFHKH4XzXITTGU' @ 47 : 1 .. '!macros!z5CFHKH4XzXITTGU' @ 0 : 0; will stop at (end)
-2025/05/07-23:27:48.455 790c Manual compaction at level-1 from '!macros!DFIqi3kVXrYZ8S7y' @ 72057594037927935 : 1 .. '!macros!z5CFHKH4XzXITTGU' @ 0 : 0; will stop at '!macros!z5CFHKH4XzXITTGU' @ 47 : 1
-2025/05/07-23:27:48.455 790c Compacting 1@1 + 1@2 files
-2025/05/07-23:27:48.460 790c Generated table #617@1: 8 keys, 4023 bytes
-2025/05/07-23:27:48.460 790c Compacted 1@1 + 1@2 files => 4023 bytes
-2025/05/07-23:27:48.462 790c compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/05/07-23:27:48.462 790c Delete type=2 #604
-2025/05/07-23:27:48.463 790c Delete type=2 #616
-2025/05/07-23:27:48.463 790c Manual compaction at level-1 from '!macros!z5CFHKH4XzXITTGU' @ 47 : 1 .. '!macros!z5CFHKH4XzXITTGU' @ 0 : 0; will stop at (end)
+2025/10/16-17:58:45.023795 30e8ea000 Recovering log #620
+2025/10/16-17:58:45.024201 30e8ea000 Delete type=3 #618
+2025/10/16-17:58:45.024386 30e8ea000 Delete type=0 #620
+2025/10/16-17:59:32.608829 3087d3000 Level-0 table #625: started
+2025/10/16-17:59:32.608882 3087d3000 Level-0 table #625: 0 bytes OK
+2025/10/16-17:59:32.608982 3087d3000 Delete type=0 #623
+2025/10/16-17:59:32.609036 3087d3000 Manual compaction at level-0 from '!macros!DFIqi3kVXrYZ8S7y' @ 72057594037927935 : 1 .. '!macros!z5CFHKH4XzXITTGU' @ 0 : 0; will stop at (end)
+2025/10/16-17:59:32.609048 3087d3000 Manual compaction at level-1 from '!macros!DFIqi3kVXrYZ8S7y' @ 72057594037927935 : 1 .. '!macros!z5CFHKH4XzXITTGU' @ 0 : 0; will stop at (end)
