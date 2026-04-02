@@ -28,17 +28,17 @@ Hooks.once("init", async function () {
         default: {},
     });
 
-    if (game.system.id === "dnd5e") {
-        game.settings.registerMenu(AECONSTS.MN, "configBindings", {
-            name: game.i18n.localize("AE.custombindings.sett.name"),
-            label: game.i18n.localize("AE.custombindings.sett.label"),
-            hint: game.i18n.localize("AE.custombindings.sett.hint"),
-            icon: "fas fa-cogs",
-            scope: "world",
-            restricted: true,
-            type: AutomatedEvocationsCustomBindings,
-        });
-    }
+    // if (game.system.id === "dnd5e") {
+    //     game.settings.registerMenu(AECONSTS.MN, "configBindings", {
+    //         name: game.i18n.localize("AE.custombindings.sett.name"),
+    //         label: game.i18n.localize("AE.custombindings.sett.label"),
+    //         hint: game.i18n.localize("AE.custombindings.sett.hint"),
+    //         icon: "fas fa-cogs",
+    //         scope: "world",
+    //         restricted: true,
+    //         type: AutomatedEvocationsCustomBindings,
+    //     });
+    // }
 
     game.settings.register(AECONSTS.MN, "autoclose", {
         name: game.i18n.localize(`AE.settings.autoclose.title`),
@@ -48,14 +48,16 @@ Hooks.once("init", async function () {
         type: Boolean,
         default: false,
     });
-    game.settings.register(AECONSTS.MN, "enableautomations", {
-        name: game.i18n.localize(`AE.settings.enableautomations.title`),
-        hint: game.i18n.localize(`AE.settings.enableautomations.hint`),
-        scope: "world",
-        config: true,
-        type: Boolean,
-        default: true,
-    });
+
+    // game.settings.register(AECONSTS.MN, "enableautomations", {
+    //     name: game.i18n.localize(`AE.settings.enableautomations.title`),
+    //     hint: game.i18n.localize(`AE.settings.enableautomations.hint`),
+    //     scope: "world",
+    //     config: true,
+    //     type: Boolean,
+    //     default: true,
+    // });
+    
     game.settings.register(AECONSTS.MN, "storeonactor", {
         name: game.i18n.localize(`AE.settings.storeonactor.title`),
         hint: game.i18n.localize(`AE.settings.storeonactor.hint`),

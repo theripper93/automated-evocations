@@ -14,29 +14,12 @@
       "lang": "en",
       "name": "English",
       "path": "languages/en.json"
-    },
-    {
-      "lang": "de",
-      "name": "Deutsch (German)",
-      "path": "languages/de.json"
-    },
-    {
-      "lang": "fr",
-      "name": "Français (French)",
-      "path": "languages/fr.json"
-    },
-    {
-      "lang": "ja",
-      "name": "日本語",
-      "path": "languages/ja.json"
     }
   ],
   "scripts": [
     "scripts/main.js",
     "scripts/config.js",
     "scripts/companionmanager.js",
-    "scripts/autoevocations/dnd5e.js",
-    "scripts/autoevocations/pf2e.js",
     "scripts/autoevocations/automatedevocations.js",
     "scripts/custombindings.js"
   ],
@@ -83,7 +66,7 @@
     ]
   },
   "compatibility": {
-    "minimum": "13",
-    "verified": "13"
+    "minimum": "14",
+    "verified": "14"
   }
 }
